@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimaryDarkCustomAlert">#0F3ECF</color>
+    <color name="colorAccentCustomAlert">#009688</color>
+
+    <color name="colorCloseCustomAlert">#2196F3</color>
+    <color name="colorTitleCustomAlert">#292929</color>
+    <color name="colorMessageCustomAlert">#615e5e</color>
+
+    <color name="colorClickButton">#FFB69F</color>
+
+    <color name="colorSuccessCustomAlert">#8BC34A</color>
+    <color name="colorFailCustomAlert">#F44336</color>
+    <color name="colorWarningCustomAlert">#FFC107</color>
+</resources>

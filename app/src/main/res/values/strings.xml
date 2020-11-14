@@ -1,0 +1,52 @@
+<resources>
+    <string name="app_name">CustomAlert</string>
+
+    <string name="enable_custom_alert_full">Enable Custom Alert Full</string>
+    <string name="alert_simple">Simple</string>
+    <string name="alert_one_button">One Button</string>
+    <string name="alert_two_buttons">Two Buttons</string>
+
+    <string name="hint_title">Title</string>
+    <string name="hint_message">Message</string>
+    <string name="title">Hello! Custom Alert</string>
+    <string name="message">This is an important message for you from Custom Alert.</string>
+
+    <string name="negative_button">Cancel</string>
+    <string name="positive_button">Accept</string>
+    <string name="negative_button_click">Click Negative Button</string>
+    <string name="positive_button_click">Click Positive Button</string>
+
+    <string name="custom_type">Type</string>
+    <string name="type_success">Success</string>
+    <string name="type_fail">Fail</string>
+    <string name="type_warning">Warning</string>
+    <string name="type_prg">Progress</string>
+    <string name="type_custom">Custom</string>
+
+    <string name="custom_view">View</string>
+    <string name="enable_icon">Icon</string>
+    <string name="view_simple">Simple</string>
+    <string name="view_large">Large</string>
+    <string name="view_gif">Gif</string>
+
+    <string name="view_identity">Person identity</string>
+    <string name="view_name"><b>Name: </b>James Douglas</string>
+    <string name="view_last_name"><b>Last name: </b>Morrison</string>
+    <string name="view_birthday"><b>Birthday: </b>08/december/1943</string>
+    <string name="view_country"><b>Country: </b>United States</string>
+    <string name="view_city"><b>City: </b>Melbourne, Florida</string>
+    <string name="view_girlfriend"><b>Girlfriend: </b>Pamela Courson</string>
+    <string name="view_picture">Picture</string>
+    <string name="view_autobiography">James Douglas Morrison was an American singer, songwriter and poet, who served as the lead vocalist of the rock band The Doors.
+        Due to his wild personality, poetic lyrics, his widely recognized voice, unpredictable and erratic performances, and the dramatic circumstances surrounding his life and early death,
+        Morrison is regarded by music critics and fans as one of the most iconic and influential frontmen in rock history. Since his death, his fame has endured as one of popular cultures most rebellious and oft-displayed icons,
+        representing the generation gap and youth counterculture. Together with Ray Manzarek, Morrison co-founded the Doors during the summer of 1965 in Venice, California.
+        The band spent two years in obscurity until shooting to prominence with their number-one single in the United States, "Light My Fire," taken from their self-titled debut album.
+        Morrison wrote or co-wrote many of the Doors songs, including "Light My Fire", "Break On Through (To the Other Side)", "The End", "Moonlight Drive", "Wild Child", "The Soft Parade",
+        "People Are Strange", "Hello, I Love You", "Roadhouse Blues", "L.A. Woman", and "Riders on the Storm". He recorded a total of six studio albums with the Doors, all of which sold well and received critical acclaim.
+        Morrison was well known for improvising spoken word poetry passages while the band played live. Manzarek said Morrison "embodied hippie counterculture rebellion".
+        Morrison developed an alcohol dependency during the 1960s, which at times affected his performances on stage. He died unexpectedly at the age of 27 in Paris, among conflicting witness and alleged witness reports.
+        As no autopsy was performed, the cause of Morrisons death remains disputed. Though the Doors recorded two more albums after Morrison died, his death severely affected the bands fortunes, and they split up in 1973. In 1993,
+        Morrison was inducted into the Rock and Roll Hall of Fame as a member of the Doors. In 2008, he was ranked 47th in Rolling Stone magazines list "The 100 Greatest Singers of All Time." </string>
+
+</resources>

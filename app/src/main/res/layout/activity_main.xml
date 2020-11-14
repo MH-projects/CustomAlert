@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="8dp"
+    android:visibility="invisible"
+    tools:context=".MainActivity">
+
+    <CheckBox
+        android:id="@+id/cbSetFull"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layoutDirection="rtl"
+        android:text="@string/enable_custom_alert_full" />
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/rbSimple"
+            style="@style/LinearLayout"
+            android:text="@string/alert_simple" />
+
+        <RadioButton
+            android:id="@+id/rbOneButton"
+            style="@style/LinearLayout"
+            android:text="@string/alert_one_button" />
+
+        <RadioButton
+            android:id="@+id/rbTwoButtons"
+            style="@style/LinearLayout"
+            android:checked="true"
+            android:text="@string/alert_two_buttons" />
+    </RadioGroup>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/etTitle"
+            style="@style/EditText"
+            android:hint="@string/hint_title"
+            android:importantForAutofill="no"
+            android:text="@string/title" />
+
+        <EditText
+            android:id="@+id/etMessage"
+            style="@style/EditText"
+            android:hint="@string/hint_message"
+            android:importantForAutofill="no"
+            android:text="@string/message" />
+    </LinearLayout>
+
+    <TextView
+        style="@style/TextView"
+        android:text="@string/custom_type" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/btnSuccess"
+            style="@style/Button"
+            android:onClick="click_type"
+            android:text="@string/type_success" />
+
+        <Button
+            android:id="@+id/btnFail"
+            style="@style/Button"
+            android:onClick="click_type"
+            android:text="@string/type_fail" />
+
+        <Button
+            android:id="@+id/btnWarning"
+            style="@style/Button"
+            android:onClick="click_type"
+            android:text="@string/type_warning" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="3">
+
+        <Button
+            android:id="@+id/btnPrg"
+            style="@style/Button"
+            android:onClick="click_type"
+            android:text="@string/type_prg" />
+
+        <Button
+            android:id="@+id/btnCustom"
+            style="@style/Button"
+            android:onClick="click_type"
+            android:text="@string/type_custom" />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            style="@style/TextView"
+            android:text="@string/custom_view" />
+
+        <CheckBox
+            android:id="@+id/cbSetIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="8dp"
+            android:checked="true"
+            android:layoutDirection="rtl"
+            android:text="@string/enable_icon" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/btnSimple"
+            style="@style/Button"
+            android:onClick="click_view"
+            android:text="@string/view_simple" />
+
+        <Button
+            android:id="@+id/btnLarge"
+            style="@style/Button"
+            android:onClick="click_view"
+            android:text="@string/view_large" />
+
+        <Button
+            android:id="@+id/btnGif"
+            style="@style/Button"
+            android:onClick="click_view"
+            android:text="@string/view_gif" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnHappyPath"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="click_happy"
+        android:layout_gravity="bottom"
+        android:text="HappyPath" />
+
+</LinearLayout>

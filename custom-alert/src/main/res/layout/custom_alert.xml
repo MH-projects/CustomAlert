@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent">
+
+    <RelativeLayout
+        android:id="@+id/relAlert"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_45dp"
+        android:background="@drawable/corner_back"
+        android:paddingBottom="@dimen/_12dp">
+
+        <ImageView
+            android:id="@+id/ivClose"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:contentDescription="@string/contentDescription"
+            android:padding="@dimen/_10dp"
+            android:visibility="visible"
+            app:srcCompat="@drawable/ic_close" />
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/_40dp" />
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/view"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:text="@string/ca_title"
+            android:textColor="@color/colorTitleCustomAlert"
+            android:textSize="@dimen/_18sp"
+            android:visibility="gone"
+            tools:ignore="RelativeOverlap" />
+
+        <TextView
+            android:id="@+id/tvMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvTitle"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="@dimen/_10dp"
+            android:layout_marginTop="@dimen/_12dp"
+            android:layout_marginEnd="@dimen/_10dp"
+            android:textAlignment="center"
+            android:textColor="@color/colorMessageCustomAlert"
+            android:textSize="@dimen/_16sp"
+            android:visibility="gone" />
+
+        <ScrollView
+            android:id="@+id/scrollView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvMessage"
+            android:adjustViewBounds="true"
+            android:overScrollMode="never">
+
+            <LinearLayout
+                android:id="@+id/llView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
+        </ScrollView>
+
+        <!--<pl.droidsonroids.gif.GifImageView
+            android:id="@+id/ivGif"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvMessage"
+            android:layout_centerInParent="true"
+            android:src="@drawable/gif_tooth_load" />-->
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/llButtons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/relAlert"
+        android:background="@drawable/corner_back_bottom"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <View
+            android:id="@+id/viewH"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorPrimaryDarkCustomAlert" />
+
+        <TextView
+            android:id="@+id/btnNeutral"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/click_btn_neutral"
+            android:gravity="center"
+            android:padding="@dimen/_6dp"
+            android:text="@string/ca_cancel"
+            android:textColor="@color/colorAccentCustomAlert"
+            android:textStyle="bold"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:id="@+id/llNegativePositive"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/btnNegative"
+                style="@style/Button"
+                android:background="@drawable/click_btn_left"
+                android:padding="@dimen/_6dp"
+                android:text="@string/ca_cancel"
+                android:textAlignment="center"
+                android:textColor="@color/colorFailCustomAlert"
+                android:textStyle="bold" />
+
+            <View
+                android:id="@+id/viewV"
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/colorPrimaryDarkCustomAlert" />
+
+            <TextView
+                android:id="@+id/btnPositive"
+                style="@style/Button"
+                android:background="@drawable/click_btn_right"
+                android:padding="@dimen/_6dp"
+                android:text="@string/ca_accept"
+                android:textAlignment="center"
+                android:textColor="@color/colorSuccessCustomAlert"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/circleView"
+        android:layout_width="@dimen/_64dp"
+        android:layout_height="@dimen/_64dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/_12dp"
+        android:background="@drawable/circle_alert"
+        android:contentDescription="@string/contentDescription"
+        android:padding="@dimen/_10dp"
+        android:visibility="visible" />
+
+    <RelativeLayout
+        android:id="@+id/relPrg"
+        android:layout_width="@dimen/_64dp"
+        android:layout_height="@dimen/_64dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/_12dp"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/ivProgress"
+            android:layout_width="@dimen/_64dp"
+            android:layout_height="@dimen/_64dp"
+            android:background="@drawable/circle_alert"
+            android:contentDescription="@string/contentDescription"
+            android:padding="@dimen/_10dp"
+            android:visibility="visible" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="@style/Widget.AppCompat.ProgressBar"
+            android:layout_width="@dimen/_64dp"
+            android:layout_height="@dimen/_64dp"
+            android:padding="@dimen/_10dp"
+            android:theme="@style/CircularProgress"
+            android:visibility="visible" />
+
+    </RelativeLayout>
+
+</RelativeLayout>
