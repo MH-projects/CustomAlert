@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="8dp"
-    android:visibility="invisible"
+    android:visibility="visible"
     tools:context=".MainActivity">
 
     <CheckBox
@@ -36,6 +36,12 @@
             style="@style/LinearLayout"
             android:checked="true"
             android:text="@string/alert_two_buttons" />
+
+        <RadioButton
+            android:id="@+id/rbThreeButtons"
+            style="@style/LinearLayout"
+            android:text="@string/alert_three_buttons" />
+
     </RadioGroup>
 
     <LinearLayout
@@ -152,8 +158,8 @@
         android:id="@+id/btnHappyPath"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="click_happy"
         android:layout_gravity="bottom"
+        android:onClick="click_happy"
         android:text="HappyPath" />
 
 </LinearLayout>

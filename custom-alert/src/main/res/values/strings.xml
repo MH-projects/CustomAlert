@@ -3,6 +3,7 @@
     <string name="contentDescription">contentDescription</string>
     <string name="ca_title">TITLE</string>
     <string name="ca_cancel">Cancelar</string>
+    <string name="ca_neutral">Neutral</string>
     <string name="ca_accept">Aceptar</string>
 
 </resources>

@@ -11,8 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_45dp"
-        android:background="@drawable/corner_back"
-        android:paddingBottom="@dimen/_12dp">
+        android:background="@drawable/corner_back">
 
         <ImageView
             android:id="@+id/ivClose"
@@ -36,6 +35,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/view"
             android:layout_centerHorizontal="true"
+            android:layout_marginBottom="@dimen/_12dp"
             android:gravity="center"
             android:text="@string/ca_title"
             android:textColor="@color/colorTitleCustomAlert"
@@ -50,8 +50,8 @@
             android:layout_below="@+id/tvTitle"
             android:layout_centerHorizontal="true"
             android:layout_marginStart="@dimen/_10dp"
-            android:layout_marginTop="@dimen/_12dp"
             android:layout_marginEnd="@dimen/_10dp"
+            android:layout_marginBottom="@dimen/_12dp"
             android:textAlignment="center"
             android:textColor="@color/colorMessageCustomAlert"
             android:textSize="@dimen/_16sp"
@@ -62,6 +62,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tvMessage"
+            android:layout_marginBottom="@dimen/_12dp"
             android:adjustViewBounds="true"
             android:overScrollMode="never">
 
@@ -71,6 +72,67 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical" />
         </ScrollView>
+
+        <View
+            android:id="@+id/viewH"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/scrollView"
+            android:background="@color/colorPrimaryDarkCustomAlert"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:id="@+id/llNegativePositive"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/viewH"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/btnNeutral"
+                style="@style/Button"
+                android:padding="@dimen/_6dp"
+                android:text="@string/ca_neutral"
+                android:textAlignment="center"
+                android:textColor="@color/colorAccentCustomAlert"
+                android:textStyle="bold"
+                android:visibility="gone" />
+
+            <View
+                android:id="@+id/viewV1"
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/colorPrimaryDarkCustomAlert"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/btnNegative"
+                style="@style/Button"
+                android:padding="@dimen/_6dp"
+                android:text="@string/ca_cancel"
+                android:textAlignment="center"
+                android:textColor="@color/colorFailCustomAlert"
+                android:textStyle="bold"
+                android:visibility="gone" />
+
+            <View
+                android:id="@+id/viewV2"
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/colorPrimaryDarkCustomAlert"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/btnPositive"
+                style="@style/Button"
+                android:padding="@dimen/_6dp"
+                android:text="@string/ca_accept"
+                android:textAlignment="center"
+                android:textColor="@color/colorSuccessCustomAlert"
+                android:textStyle="bold"
+                android:visibility="gone" />
+
+        </LinearLayout>
 
         <!--<pl.droidsonroids.gif.GifImageView
             android:id="@+id/ivGif"
@@ -89,61 +151,7 @@
         android:layout_below="@+id/relAlert"
         android:background="@drawable/corner_back_bottom"
         android:orientation="vertical"
-        android:visibility="gone">
-
-        <View
-            android:id="@+id/viewH"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/colorPrimaryDarkCustomAlert" />
-
-        <TextView
-            android:id="@+id/btnNeutral"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/click_btn_neutral"
-            android:gravity="center"
-            android:padding="@dimen/_6dp"
-            android:text="@string/ca_cancel"
-            android:textColor="@color/colorAccentCustomAlert"
-            android:textStyle="bold"
-            android:visibility="gone" />
-
-        <LinearLayout
-            android:id="@+id/llNegativePositive"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:visibility="gone">
-
-            <TextView
-                android:id="@+id/btnNegative"
-                style="@style/Button"
-                android:background="@drawable/click_btn_left"
-                android:padding="@dimen/_6dp"
-                android:text="@string/ca_cancel"
-                android:textAlignment="center"
-                android:textColor="@color/colorFailCustomAlert"
-                android:textStyle="bold" />
-
-            <View
-                android:id="@+id/viewV"
-                android:layout_width="1dp"
-                android:layout_height="match_parent"
-                android:background="@color/colorPrimaryDarkCustomAlert" />
-
-            <TextView
-                android:id="@+id/btnPositive"
-                style="@style/Button"
-                android:background="@drawable/click_btn_right"
-                android:padding="@dimen/_6dp"
-                android:text="@string/ca_accept"
-                android:textAlignment="center"
-                android:textColor="@color/colorSuccessCustomAlert"
-                android:textStyle="bold" />
-
-        </LinearLayout>
-    </LinearLayout>
+        android:visibility="gone"/>
 
     <ImageView
         android:id="@+id/circleView"

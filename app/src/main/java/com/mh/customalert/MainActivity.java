@@ -1,17 +1,11 @@
 package com.mh.customalert;
 
-import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
-import android.widget.Toast;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.mh.custom_alert.CustomAlert;
@@ -34,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         etTitle = findViewById(R.id.etTitle);
         etMessage = findViewById(R.id.etMessage);
 
-        final CustomAlert customAlert = new CustomAlert(this);
+        /*final CustomAlert customAlert = new CustomAlert(this);
         customAlert.setType(Type.WARNING);
         customAlert.setFullAlert(true);
         customAlert.setTitle("Attention!");
@@ -45,8 +39,7 @@ public class MainActivity extends AppCompatActivity {
                 customAlert.dismiss();
             }
         });
-        customAlert.show();
-
+        customAlert.show();*/
     }
 
     public void click_type(View v) {
@@ -101,6 +94,19 @@ public class MainActivity extends AppCompatActivity {
         alert = new CustomAlert(this);
         alert.setColor(R.color.custom_color);
         alert.setIcon(R.drawable.ic_android);
+
+        alert.setNeutralTextColor(android.R.color.white);
+        alert.setNeutralBackColor(R.color.color_neutral);
+        alert.setNeutralColorPress(R.color.colorPrimary,109);
+
+        alert.setNegativeTextColor(android.R.color.white);
+        alert.setNegativeBackColor(R.color.color_negative);
+        alert.setNegativeColorPress(R.color.colorPrimary,109);
+
+        alert.setPositiveTextColor(android.R.color.white);
+        alert.setPositiveBackColor(R.color.color_positive);
+        alert.setPositiveColorPress(R.color.colorPrimary,109);
+
         setTitles();
         showAlert();
     }
@@ -122,10 +128,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
         alert.setView(v);
-        DisplayMetrics metrics = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(metrics);
-        int height = metrics.heightPixels;
-        alert.setHeight(height);
         showAlert();
     }
 
@@ -139,17 +141,41 @@ public class MainActivity extends AppCompatActivity {
         alert.setCancelable(false);
         alert.setFullAlert(cbFullAlert.isChecked());
 
-        if (((RadioButton) findViewById(R.id.rbOneButton)).isChecked()) {
+        if (((RadioButton) findViewById(R.id.rbSimple)).isChecked()) {
 
-            alert.setButton(getString(R.string.positive_button), new View.OnClickListener() {
+            alert.setNeutralText(null);
+            alert.setNegativeText(null);
+            alert.setPositiveText(null);
+
+            /*alert.setButton(getString(R.string.positive_button), new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Toast.makeText(MainActivity.this, getString(R.string.positive_button_click), Toast.LENGTH_SHORT).show();
                     alert.dismiss();
                 }
+            });*/
+        } else if (((RadioButton) findViewById(R.id.rbOneButton)).isChecked()) {
+
+            alert.setPositiveText("Accept", new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    alert.dismiss();
+                }
             });
+
+            /*alert.setButton(getString(R.string.positive_button), new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(MainActivity.this, getString(R.string.positive_button_click), Toast.LENGTH_SHORT).show();
+                    alert.dismiss();
+                }
+            });*/
         } else if (((RadioButton) findViewById(R.id.rbTwoButtons)).isChecked()) {
-            alert.setButtons(getString(R.string.negative_button), new View.OnClickListener() {
+
+            alert.setNegativeText("Negative");
+            alert.setPositiveText("Positive");
+
+            /*alert.setButton(getString(R.string.negative_button), new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Toast.makeText(MainActivity.this, getString(R.string.negative_button_click), Toast.LENGTH_SHORT).show();
@@ -161,14 +187,38 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this, getString(R.string.positive_button_click), Toast.LENGTH_SHORT).show();
                     alert.dismiss();
                 }
+            });*/
+        } else if (((RadioButton) findViewById(R.id.rbThreeButtons)).isChecked()) {
+
+            alert.setNeutralText("Neutral");
+            alert.setNegativeText("Negative");
+            alert.setPositiveText("Positive", new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    System.out.println("===> ");
+                }
             });
+
+            /*alert.setButton(getString(R.string.negative_button), new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(MainActivity.this, getString(R.string.negative_button_click), Toast.LENGTH_SHORT).show();
+                    alert.dismiss();
+                }
+            }, getString(R.string.positive_button), new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(MainActivity.this, getString(R.string.positive_button_click), Toast.LENGTH_SHORT).show();
+                    alert.dismiss();
+                }
+            });*/
         }
         alert.show();
     }
 
     public void click_happy(View view) {
 
-        final CustomAlert alert = new CustomAlert(this);
+        /*final CustomAlert alert = new CustomAlert(this);
         alert.setCancelable(false);
         alert.setIcon(R.drawable.ic_person);
 
@@ -185,7 +235,7 @@ public class MainActivity extends AppCompatActivity {
                 int height = metrics.heightPixels;
                 alert.setHeight(height);
 
-                alert.setButtons("Cancelar", new View.OnClickListener() {
+                alert.setButton("Cancelar", new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         alert.dismiss();
@@ -199,7 +249,7 @@ public class MainActivity extends AppCompatActivity {
                         alert.setTitle("Enviar información");
                         alert.setMessage("¿Esta seguro de enviar su información?");
 
-                        alert.setButtons("NO", new View.OnClickListener() {
+                        alert.setButton("NO", new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
                                 alert.dismiss();
@@ -240,9 +290,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
-        alert.show();
-
-
+        alert.show();*/
     }
 }

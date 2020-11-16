@@ -4,6 +4,9 @@
     <color name="colorPrimaryDark">#2196F3</color>
     <color name="colorAccent">#FF5722</color>
 
+    <color name="color_neutral">#0027FF</color>
+    <color name="color_negative">#FF0000</color>
+    <color name="color_positive">#00FF0A</color>
     <color name="custom_color">#CDDC39</color>
 
 </resources>
