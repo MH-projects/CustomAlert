@@ -29,6 +29,8 @@ import androidx.core.content.ContextCompat;
 
 import java.util.Objects;
 
+import pl.droidsonroids.gif.GifImageView;
+
 //TODO SetEnter animation and exit animation
 //TODO SetFonts
 
@@ -58,13 +60,10 @@ public abstract class AlertDialog implements View.OnClickListener, DialogInterfa
     protected Btn backP;
 
     protected static class Btn {
-        protected TextView btn;
         protected int backColor;
         protected int pressColor;
         protected int alpha;
     }
-
-    protected abstract Drawable setColor(int i, int d);
 
     protected abstract void checkFullAlert();
 
@@ -77,7 +76,7 @@ public abstract class AlertDialog implements View.OnClickListener, DialogInterfa
         dialog = new Dialog(act);
 
         LayoutInflater inflater = (LayoutInflater) act.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        view = Objects.requireNonNull(inflater).inflate(R.layout.custom_alert, null);
+        view = Objects.requireNonNull(inflater).inflate(R.layout.customalert_lib, null);
 
         ivCircle = view.findViewById(R.id.circleView);
         prgCircle = view.findViewById(R.id.prgCircle);
@@ -101,13 +100,12 @@ public abstract class AlertDialog implements View.OnClickListener, DialogInterfa
         backN = new Btn();
         backP = new Btn();
 
-        setBtn(backX, btnX);
-        setBtn(backN, btnN);
-        setBtn(backP, btnP);
+        setBtn(backX);
+        setBtn(backN);
+        setBtn(backP);
     }
 
-    private void setBtn(Btn b, TextView t) {
-        b.btn = t;
+    private void setBtn(Btn b) {
         b.backColor = android.R.color.transparent;
         b.pressColor = R.color.colorClickButton;
         b.alpha = 65;
@@ -198,6 +196,22 @@ public abstract class AlertDialog implements View.OnClickListener, DialogInterfa
         setHeight();
     }
 
+    public void setGif(Integer gif) {
+        if (gif == null) {
+            llView.removeAllViews();
+            llView.setVisibility(View.GONE);
+        } else {
+            View v = act.getLayoutInflater().inflate(R.layout.customalert_gif, null);
+            ((GifImageView) v.findViewById(R.id.ivGif)).setImageResource(gif);
+
+            LinearLayout.LayoutParams p2 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 350);
+            v.setLayoutParams(p2);
+
+            llView.addView(v);
+            llView.setVisibility(View.VISIBLE);
+        }
+    }
+
     public void setNeutralText(String text) {
         setBtn(btnX, text, this);
     }
@@ -247,19 +261,19 @@ public abstract class AlertDialog implements View.OnClickListener, DialogInterfa
     }
 
     public void setNeutralColorPress(int color, int alpha) {
-        backX.btn = btnX;
+        //backX.btn = btnX;
         backX.pressColor = color;
         backX.alpha = alpha;
     }
 
     public void setNegativeColorPress(int color, int alpha) {
-        backN.btn = btnN;
+        //backN.btn = btnN;
         backN.pressColor = color;
         backN.alpha = alpha;
     }
 
     public void setPositiveColorPress(int color, int alpha) {
-        backP.btn = btnP;
+        //backP.btn = btnP;
         backP.pressColor = color;
         backP.alpha = alpha;
     }

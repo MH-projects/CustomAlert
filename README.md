@@ -5,6 +5,7 @@
 Custom alert for a better design of your application.
 
 ## Usage
+### Type
 
 ```java
 final CustomAlert customAlert = new CustomAlert(this);
@@ -40,6 +41,25 @@ customAlert.setFullAlert(true);
 <img src="https://github.com/MH-projects/CustomAlert/blob/master/pictures/type_fail_full.png" width="200" height="355">
 <img src="https://github.com/MH-projects/CustomAlert/blob/master/pictures/type_warning_full.png" width="200" height="355">
 <img src="https://github.com/MH-projects/CustomAlert/blob/master/pictures/type_prg_full.gif" width="200" height="355">
+</p>
+
+### View
+If you want to add view, add this line in your code.
+```java
+alert.setView(getLayoutInflater().inflate(R.layout.custom_view, null));
+```
+<p>
+<img src="https://github.com/MH-projects/CustomAlert/blob/master/pictures/view_simple.png" width="200" height="355">
+<img src="https://github.com/MH-projects/CustomAlert/blob/master/pictures/view_simple_full.png" width="200" height="355">
+<img src="https://github.com/MH-projects/CustomAlert/blob/master/pictures/view_large.gif" width="200" height="355">
+</p>
+
+If you want to add a gif, add this line in your code. *The gif adjust to 350px height*  
+```java
+alert.setGif(R.drawable.your_gif);
+```
+<p>
+<img src="https://github.com/MH-projects/CustomAlert/blob/master/pictures/view_gif.gif" width="200" height="355">
 </p>
 
 ## Custom

@@ -8,6 +8,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -37,19 +38,6 @@ public class MainActivity extends AppCompatActivity {
         cbFullAlert = findViewById(R.id.cbSetFull);
         etTitle = findViewById(R.id.etTitle);
         etMessage = findViewById(R.id.etMessage);
-
-        /*final CustomAlert customAlert = new CustomAlert(this);
-        customAlert.setType(Type.PROGRESS);
-        customAlert.setFullAlert(true);
-        customAlert.setTitle("Wait!");
-        customAlert.setMessage("Your information is uploading...");
-        customAlert.setNegativeText("Cancel", new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-        customAlert.show();*/
     }
 
     public void click_type(View v) {
@@ -89,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
             case R.id.btnGif:
+                setCustomAlertGif();
                 break;
         }
     }
@@ -137,14 +126,24 @@ public class MainActivity extends AppCompatActivity {
 
     private void setCustomAlertType(View v) {
         alert = new CustomAlert(this);
-
         if (((CheckBox) findViewById(R.id.cbSetIcon)).isChecked()) {
             alert.setIcon(R.drawable.ic_person);
         } else {
             alert.setIcon(null);
         }
-
         alert.setView(v);
+        showAlert();
+    }
+
+    private void setCustomAlertGif() {
+        alert = new CustomAlert(this);
+        if (((CheckBox) findViewById(R.id.cbSetIcon)).isChecked()) {
+            alert.setIcon(R.drawable.ic_android);
+        } else {
+            alert.setIcon(null);
+        }
+        alert.setGif(R.drawable.gif_android);
+        setTitles();
         showAlert();
     }
 
@@ -159,86 +158,55 @@ public class MainActivity extends AppCompatActivity {
         alert.setFullAlert(cbFullAlert.isChecked());
 
         if (((RadioButton) findViewById(R.id.rbSimple)).isChecked()) {
-
             alert.setNeutralText(null);
             alert.setNegativeText(null);
             alert.setPositiveText(null);
-
-            /*alert.setButton(getString(R.string.positive_button), new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Toast.makeText(MainActivity.this, getString(R.string.positive_button_click), Toast.LENGTH_SHORT).show();
-                    alert.dismiss();
-                }
-            });*/
         } else if (((RadioButton) findViewById(R.id.rbOneButton)).isChecked()) {
-
             alert.setPositiveText("Accept", new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     alert.dismiss();
+                    Toast.makeText(MainActivity.this, "Positive Click", Toast.LENGTH_SHORT).show();
                 }
             });
-
-            /*alert.setButton(getString(R.string.positive_button), new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Toast.makeText(MainActivity.this, getString(R.string.positive_button_click), Toast.LENGTH_SHORT).show();
-                    alert.dismiss();
-                }
-            });*/
         } else if (((RadioButton) findViewById(R.id.rbTwoButtons)).isChecked()) {
-
             alert.setNegativeText("Negative", new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
+                    alert.dismiss();
+                    Toast.makeText(MainActivity.this, "Negative Click", Toast.LENGTH_SHORT).show();
                 }
             });
             alert.setPositiveText("Positive", new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
+                    alert.dismiss();
+                    Toast.makeText(MainActivity.this, "Positive Click", Toast.LENGTH_SHORT).show();
                 }
             });
-
-            /*alert.setButton(getString(R.string.negative_button), new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Toast.makeText(MainActivity.this, getString(R.string.negative_button_click), Toast.LENGTH_SHORT).show();
-                    alert.dismiss();
-                }
-            }, getString(R.string.positive_button), new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Toast.makeText(MainActivity.this, getString(R.string.positive_button_click), Toast.LENGTH_SHORT).show();
-                    alert.dismiss();
-                }
-            });*/
         } else if (((RadioButton) findViewById(R.id.rbThreeButtons)).isChecked()) {
 
-            alert.setNeutralText("Neutral");
-            alert.setNegativeText("Negative");
+            alert.setNeutralText("Neutral", new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    alert.dismiss();
+                    Toast.makeText(MainActivity.this, "Neutral Click", Toast.LENGTH_SHORT).show();
+                }
+            });
+            alert.setNegativeText("Negative", new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    alert.dismiss();
+                    Toast.makeText(MainActivity.this, "Negative Click", Toast.LENGTH_SHORT).show();
+                }
+            });
             alert.setPositiveText("Positive", new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    System.out.println("===> ");
+                    alert.dismiss();
+                    Toast.makeText(MainActivity.this, "Positive Click", Toast.LENGTH_SHORT).show();
                 }
             });
-
-            /*alert.setButton(getString(R.string.negative_button), new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Toast.makeText(MainActivity.this, getString(R.string.negative_button_click), Toast.LENGTH_SHORT).show();
-                    alert.dismiss();
-                }
-            }, getString(R.string.positive_button), new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Toast.makeText(MainActivity.this, getString(R.string.positive_button_click), Toast.LENGTH_SHORT).show();
-                    alert.dismiss();
-                }
-            });*/
         }
         alert.show();
     }
