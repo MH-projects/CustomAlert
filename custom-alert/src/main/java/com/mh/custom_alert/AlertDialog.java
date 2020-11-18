@@ -5,9 +5,12 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.GradientDrawable;
+import android.graphics.drawable.ShapeDrawable;
 import android.text.Html;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
@@ -17,6 +20,7 @@ import android.view.ViewTreeObserver;
 import android.view.Window;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -25,6 +29,8 @@ import androidx.core.content.ContextCompat;
 
 import java.util.Objects;
 
+//TODO SetEnter animation and exit animation
+
 public abstract class AlertDialog implements View.OnClickListener, DialogInterface.OnDismissListener {
 
     protected Activity act;
@@ -32,7 +38,8 @@ public abstract class AlertDialog implements View.OnClickListener, DialogInterfa
     protected View view;
     private Dialog dialog;
 
-    private ImageView ivCircle;
+    protected ImageView ivCircle;
+    private ProgressBar prgCircle;
     private TextView tvTitle;
     private TextView tvMessage;
     private ScrollView scrollView;
@@ -73,6 +80,8 @@ public abstract class AlertDialog implements View.OnClickListener, DialogInterfa
         view = Objects.requireNonNull(inflater).inflate(R.layout.custom_alert, null);
 
         ivCircle = view.findViewById(R.id.circleView);
+        prgCircle = view.findViewById(R.id.prgCircle);
+
         tvTitle = view.findViewById(R.id.tvTitle);
         tvMessage = view.findViewById(R.id.tvMessage);
         scrollView = view.findViewById(R.id.scrollView);
@@ -101,7 +110,7 @@ public abstract class AlertDialog implements View.OnClickListener, DialogInterfa
         b.btn = t;
         b.backColor = android.R.color.transparent;
         b.pressColor = R.color.colorClickButton;
-        b.alpha = 95;
+        b.alpha = 45;
     }
 
     public void setCancelable(boolean cancelable) {
@@ -109,14 +118,32 @@ public abstract class AlertDialog implements View.OnClickListener, DialogInterfa
     }
 
     public void setColor(int color) {
-        //setColor(color, ivCircle.getBackground());
-        setColor(color, R.drawable.circle_alert);
+        Drawable drawable = ivCircle.getBackground();
+        if (drawable instanceof ShapeDrawable) {
+            ((ShapeDrawable) drawable).getPaint().setColor(ContextCompat.getColor(act, color));
+        } else if (drawable instanceof GradientDrawable) {
+            ((GradientDrawable) drawable).setColor(ContextCompat.getColor(act, color));
+        } else if (drawable instanceof ColorDrawable) {
+            ((ColorDrawable) drawable).setColor(ContextCompat.getColor(act, color));
+        }
+    }
+
+    public void setColorTitle(int color){
+        tvTitle.setTextColor(ContextCompat.getColor(act, color));
+    }
+
+    public void setColorMessage(int color){
+        tvMessage.setTextColor(ContextCompat.getColor(act, color));
+    }
+
+    public void setColorPrg(int color) {
+        prgCircle.setIndeterminateTintList(ColorStateList.valueOf(ContextCompat.getColor(act, color)));
     }
 
     public void setType(int[] type) {
         setColor(type[0]);
         setIcon(type[1]);
-        view.findViewById(R.id.relPrg).setVisibility(View.GONE);
+        prgCircle.setVisibility(View.GONE);
         ivCircle.setVisibility(View.VISIBLE);
         setMarginTop = true;
     }
@@ -124,7 +151,8 @@ public abstract class AlertDialog implements View.OnClickListener, DialogInterfa
     public void setType(int type) {
         if (type == Type.PROGRESS) {
             setMarginTop = true;
-            view.findViewById(R.id.relPrg).setVisibility(View.VISIBLE);
+            setIcon(0);
+            prgCircle.setVisibility(View.VISIBLE);
         }
     }
 
@@ -172,15 +200,15 @@ public abstract class AlertDialog implements View.OnClickListener, DialogInterfa
     }
 
     public void setNeutralText(String text) {
-        setBtn(btnNeutral, text, null);
+        setBtn(btnNeutral, text, this);
     }
 
     public void setNegativeText(String text) {
-        setBtn(btnNegative, text, null);
+        setBtn(btnNegative, text, this);
     }
 
     public void setPositiveText(String text) {
-        setBtn(btnPositive, text, null);
+        setBtn(btnPositive, text, this);
     }
 
     public void setNeutralText(String text, View.OnClickListener listener) {
@@ -281,6 +309,7 @@ public abstract class AlertDialog implements View.OnClickListener, DialogInterfa
             txt.setVisibility(View.VISIBLE);
             txt.setOnClickListener(l);
         }
+        checkButtons();
     }
 
     public void setFullAlert(boolean fullAlert) {

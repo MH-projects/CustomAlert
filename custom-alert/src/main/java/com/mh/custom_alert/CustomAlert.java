@@ -37,6 +37,7 @@ public class CustomAlert extends AlertDialog {
             params.setMargins(0, 0, 0, 0);
             view.findViewById(R.id.relAlert).setLayoutParams(params);
             if (setMarginTop) {
+
                 int marginInDp = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 80, act.getResources().getDisplayMetrics());
                 RelativeLayout.LayoutParams params2 = new RelativeLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0);
                 params2.setMargins(0, marginInDp, 0, 0);
@@ -119,10 +120,6 @@ public class CustomAlert extends AlertDialog {
         return res;
     }
 
-    /*private boolean isBtn() {
-        return isX() || isN() || isP();
-    }*/
-
     private boolean isX() {
         return btnNeutral.getVisibility() == View.VISIBLE;
     }
@@ -134,19 +131,4 @@ public class CustomAlert extends AlertDialog {
     private boolean isP() {
         return btnPositive.getVisibility() == View.VISIBLE;
     }
-
-    /*private Drawable drawable(int c) {
-
-        Drawable background = ContextCompat.getDrawable(act, R.drawable.corner_leftright);
-
-        if (background instanceof ShapeDrawable) {
-            ((ShapeDrawable) background).getPaint().setColor(ContextCompat.getColor(act, c));
-        } else if (background instanceof GradientDrawable) {
-            ((GradientDrawable) background).setColor(ContextCompat.getColor(act, c));
-        } else if (background instanceof ColorDrawable) {
-            ((ColorDrawable) background).setColor(ContextCompat.getColor(act, c));
-        }
-
-        return background;
-    }*/
 }
