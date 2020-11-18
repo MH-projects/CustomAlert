@@ -30,6 +30,7 @@ import androidx.core.content.ContextCompat;
 import java.util.Objects;
 
 //TODO SetEnter animation and exit animation
+//TODO SetFonts
 
 public abstract class AlertDialog implements View.OnClickListener, DialogInterface.OnDismissListener {
 
@@ -40,22 +41,21 @@ public abstract class AlertDialog implements View.OnClickListener, DialogInterfa
 
     protected ImageView ivCircle;
     private ProgressBar prgCircle;
-    private TextView tvTitle;
-    private TextView tvMessage;
+    private TextView tvT, tvM;
     private ScrollView scrollView;
     private LinearLayout llView;
 
-    protected TextView btnNegative;
-    protected TextView btnNeutral;
-    protected TextView btnPositive;
+    protected TextView btnX;
+    protected TextView btnN;
+    protected TextView btnP;
     protected View vH, vv1, vv2;
 
     protected boolean setMarginTop;
     protected boolean fullAlert = false;
 
-    protected Btn backNeu;
-    protected Btn backNeg;
-    protected Btn backPos;
+    protected Btn backX;
+    protected Btn backN;
+    protected Btn backP;
 
     protected static class Btn {
         protected TextView btn;
@@ -82,13 +82,13 @@ public abstract class AlertDialog implements View.OnClickListener, DialogInterfa
         ivCircle = view.findViewById(R.id.circleView);
         prgCircle = view.findViewById(R.id.prgCircle);
 
-        tvTitle = view.findViewById(R.id.tvTitle);
-        tvMessage = view.findViewById(R.id.tvMessage);
+        tvT = view.findViewById(R.id.tvTitle);
+        tvM = view.findViewById(R.id.tvMessage);
         scrollView = view.findViewById(R.id.scrollView);
         llView = view.findViewById(R.id.llView);
-        btnNeutral = view.findViewById(R.id.btnNeutral);
-        btnNegative = view.findViewById(R.id.btnNegative);
-        btnPositive = view.findViewById(R.id.btnPositive);
+        btnX = view.findViewById(R.id.btnNeutral);
+        btnN = view.findViewById(R.id.btnNegative);
+        btnP = view.findViewById(R.id.btnPositive);
 
         vH = view.findViewById(R.id.viewH);
         vv1 = view.findViewById(R.id.viewV1);
@@ -97,20 +97,20 @@ public abstract class AlertDialog implements View.OnClickListener, DialogInterfa
         view.findViewById(R.id.ivClose).setOnClickListener(this);
         dialog.setOnDismissListener(this);
 
-        backNeu = new Btn();
-        backNeg = new Btn();
-        backPos = new Btn();
+        backX = new Btn();
+        backN = new Btn();
+        backP = new Btn();
 
-        setBtn(backNeu, btnNeutral);
-        setBtn(backNeg, btnNegative);
-        setBtn(backPos, btnPositive);
+        setBtn(backX, btnX);
+        setBtn(backN, btnN);
+        setBtn(backP, btnP);
     }
 
     private void setBtn(Btn b, TextView t) {
         b.btn = t;
         b.backColor = android.R.color.transparent;
         b.pressColor = R.color.colorClickButton;
-        b.alpha = 45;
+        b.alpha = 65;
     }
 
     public void setCancelable(boolean cancelable) {
@@ -128,12 +128,12 @@ public abstract class AlertDialog implements View.OnClickListener, DialogInterfa
         }
     }
 
-    public void setColorTitle(int color){
-        tvTitle.setTextColor(ContextCompat.getColor(act, color));
+    public void setColorTitle(int color) {
+        tvT.setTextColor(ContextCompat.getColor(act, color));
     }
 
-    public void setColorMessage(int color){
-        tvMessage.setTextColor(ContextCompat.getColor(act, color));
+    public void setColorMessage(int color) {
+        tvM.setTextColor(ContextCompat.getColor(act, color));
     }
 
     public void setColorPrg(int color) {
@@ -166,20 +166,19 @@ public abstract class AlertDialog implements View.OnClickListener, DialogInterfa
     }
 
     public void setTitle(String title) {
-        tvTitle.setText(Html.fromHtml(title));
-        if (title.isEmpty()) {
-            tvTitle.setVisibility(View.GONE);
-        } else {
-            tvTitle.setVisibility(View.VISIBLE);
-        }
+        setTxt(tvT, title);
     }
 
     public void setMessage(String message) {
-        tvMessage.setText(Html.fromHtml(message));
-        if (message.isEmpty()) {
-            tvMessage.setVisibility(View.GONE);
+        setTxt(tvM, message);
+    }
+
+    private void setTxt(TextView t, String s) {
+        t.setText(Html.fromHtml(s));
+        if (s.isEmpty()) {
+            t.setVisibility(View.GONE);
         } else {
-            tvMessage.setVisibility(View.VISIBLE);
+            t.setVisibility(View.VISIBLE);
         }
     }
 
@@ -200,82 +199,69 @@ public abstract class AlertDialog implements View.OnClickListener, DialogInterfa
     }
 
     public void setNeutralText(String text) {
-        setBtn(btnNeutral, text, this);
+        setBtn(btnX, text, this);
     }
 
     public void setNegativeText(String text) {
-        setBtn(btnNegative, text, this);
+        setBtn(btnN, text, this);
     }
 
     public void setPositiveText(String text) {
-        setBtn(btnPositive, text, this);
+        setBtn(btnP, text, this);
     }
 
     public void setNeutralText(String text, View.OnClickListener listener) {
-        setBtn(btnNeutral, text, listener);
+        setBtn(btnX, text, listener);
     }
 
     public void setNegativeText(String text, View.OnClickListener listener) {
-        setBtn(btnNegative, text, listener);
+        setBtn(btnN, text, listener);
     }
 
     public void setPositiveText(String text, View.OnClickListener listener) {
-        setBtn(btnPositive, text, listener);
+        setBtn(btnP, text, listener);
     }
 
     public void setNeutralTextColor(int color) {
-        btnNeutral.setTextColor(ContextCompat.getColor(act, color));
+        btnX.setTextColor(ContextCompat.getColor(act, color));
     }
 
     public void setNegativeTextColor(int color) {
-        //btnNegative.setTextColor(ContextCompat.getColor(act, R.color.colorSuccessCustomAlert));
-        btnNegative.setTextColor(ContextCompat.getColor(act, color));
+        btnN.setTextColor(ContextCompat.getColor(act, color));
     }
 
     public void setPositiveTextColor(int color) {
-        btnPositive.setTextColor(ContextCompat.getColor(act, color));
+        btnP.setTextColor(ContextCompat.getColor(act, color));
     }
 
     public void setNeutralBackColor(int color) {
-        backNeu.backColor = color;
+        backX.backColor = color;
     }
 
     public void setNegativeBackColor(int color) {
-        backNeg.backColor = color;
+        backN.backColor = color;
     }
 
     public void setPositiveBackColor(int color) {
-        backPos.backColor = color;
+        backP.backColor = color;
     }
 
     public void setNeutralColorPress(int color, int alpha) {
-        //btnNeutral.setBackground(utils.makeSelector(act.getResources().getColor(color), alpha));
-        //backNeutral[0] = color;
-        //backNeutral[1] = alpha;
-
-        backNeu.btn = btnNeutral;
-        backNeu.pressColor = color;
-        backNeu.alpha = alpha;
+        backX.btn = btnX;
+        backX.pressColor = color;
+        backX.alpha = alpha;
     }
 
     public void setNegativeColorPress(int color, int alpha) {
-        //btnNegative.setBackground(utils.makeSelector(act.getResources().getColor(color), alpha));
-        //backNegative[0] = color;
-        //backNegative[1] = alpha;
-
-        backNeg.btn = btnNegative;
-        backNeg.pressColor = color;
-        backNeg.alpha = alpha;
+        backN.btn = btnN;
+        backN.pressColor = color;
+        backN.alpha = alpha;
     }
 
     public void setPositiveColorPress(int color, int alpha) {
-        //btnPositive.setBackground(makeSelector(act.getResources().getColor(color), alpha));
-        //backPositive[0] = color;
-        //backPositive[1] = alpha;
-
-        backPos.btn = btnPositive;
-        backPos.pressColor = color;
-        backPos.alpha = alpha;
+        backP.btn = btnP;
+        backP.pressColor = color;
+        backP.alpha = alpha;
     }
 
     private void setHeight() {
@@ -329,7 +315,7 @@ public abstract class AlertDialog implements View.OnClickListener, DialogInterfa
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(view);
         Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        dialog.getWindow().getAttributes().windowAnimations = R.style.DialogTheme;
+        dialog.getWindow().getAttributes().windowAnimations = R.style.CustomAlertDialogTheme;
 
         checkFullAlert();
         checkButtons();
@@ -351,9 +337,11 @@ public abstract class AlertDialog implements View.OnClickListener, DialogInterfa
     @Override
     public void onDismiss(DialogInterface dialog) {
         setColor(R.color.colorAccentCustomAlert);
-                /*TODO ((ImageView) custom_view_identity.findViewById(R.id.circleView)).setImageDrawable(null);
-                ((ImageView) custom_view_identity.findViewById(R.id.close)).setImageDrawable(null);
-                custom_view_identity.findViewById(R.id.buttonLeft).setBackground(null);
-                custom_view_identity.findViewById(R.id.buttonRight).setBackground(null);*/
+        ivCircle.setImageDrawable(null);
+        ((ImageView) view.findViewById(R.id.ivClose)).setImageDrawable(null);
+        btnX.setBackground(null);
+        btnN.setBackground(null);
+        btnP.setBackground(null);
+        llView.removeAllViews();
     }
 }

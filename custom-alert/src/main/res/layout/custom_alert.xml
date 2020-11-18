@@ -90,7 +90,7 @@
 
             <TextView
                 android:id="@+id/btnNeutral"
-                style="@style/Button"
+                style="@style/CustomAlertButton"
                 android:padding="@dimen/_6dp"
                 android:text="@string/ca_neutral"
                 android:textAlignment="center"
@@ -107,7 +107,7 @@
 
             <TextView
                 android:id="@+id/btnNegative"
-                style="@style/Button"
+                style="@style/CustomAlertButton"
                 android:padding="@dimen/_6dp"
                 android:text="@string/ca_cancel"
                 android:textAlignment="center"
@@ -124,7 +124,7 @@
 
             <TextView
                 android:id="@+id/btnPositive"
-                style="@style/Button"
+                style="@style/CustomAlertButton"
                 android:padding="@dimen/_6dp"
                 android:text="@string/ca_accept"
                 android:textAlignment="center"

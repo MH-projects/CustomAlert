@@ -25,10 +25,10 @@ final CustomAlert customAlert = new CustomAlert(this);
   - Type.PROGRESS
 
 <p>
-<img src="https://github.com/MH-projects/CustomAlert/blob/master/pictures/type_success.png" width="200">
-<img src="https://github.com/MH-projects/CustomAlert/blob/master/pictures/type_fail.png" width="200">
-<img src="https://github.com/MH-projects/CustomAlert/blob/master/pictures/type_warning.png" width="200">
-<img src="https://github.com/MH-projects/CustomAlert/blob/master/pictures/type_prg.gif" width="200">
+<img src="https://github.com/MH-projects/CustomAlert/blob/master/pictures/type_success.png" width="200" height="355">
+<img src="https://github.com/MH-projects/CustomAlert/blob/master/pictures/type_fail.png" width="200" height="355">
+<img src="https://github.com/MH-projects/CustomAlert/blob/master/pictures/type_warning.png" width="200" height="355">
+<img src="https://github.com/MH-projects/CustomAlert/blob/master/pictures/type_prg.gif" width="200" height="355">
 </p>
 
 If you want to set custom alert full, add this line in your code.
@@ -36,9 +36,10 @@ If you want to set custom alert full, add this line in your code.
 customAlert.setFullAlert(true);
 ```
 <p>
-<img src="https://github.com/MH-projects/CustomAlert/blob/master/pictures/type_success_full.png" width="200">
-<img src="https://github.com/MH-projects/CustomAlert/blob/master/pictures/type_fail_full.png" width="200">
-<img src="https://github.com/MH-projects/CustomAlert/blob/master/pictures/type_warning_full.png" width="200">
+<img src="https://github.com/MH-projects/CustomAlert/blob/master/pictures/type_success_full.png" width="200" height="355">
+<img src="https://github.com/MH-projects/CustomAlert/blob/master/pictures/type_fail_full.png" width="200" height="355">
+<img src="https://github.com/MH-projects/CustomAlert/blob/master/pictures/type_warning_full.png" width="200" height="355">
+<img src="https://github.com/MH-projects/CustomAlert/blob/master/pictures/type_prg_full.gif" width="200" height="355">
 </p>
 
 ## Custom
@@ -49,8 +50,10 @@ customAlert.setFullAlert(true);
 | hideClose | boolean | Hide the close icon. |
 | setTitle | String title | Set the title. |
 | setMessage | String message | Set the message.  |
-| setColor | R.color.your_color | Set the color of the circle. |
-| setIcon | R.drawable.your_drawable | Set the icon of the circle. If the icon is *null* the circle is gone. |
+| setColor | int R.color.your_color | Set the circle color. |
+| setColorTitle | int R.color.your_color | Set the title color. |
+| setColorMessage | int R.color.your_color | Set the message color. |
+| setIcon | int R.drawable.your_drawable | Set the circle icon. If the icon is *null* the circle is gone. |
 | set **Neutral \| Negative \| Positive** Text | String text | Set the neutral,negative or positive button text. |
 | set **Neutral \| Negative \| Positive** Text | String text, View.OnClickListener listener| Set the neutral,negative or positive button text and set the listener of button. |
 | set **Neutral \| Negative \| Positive** TextColor | R.color.your_color | Set the button text color |

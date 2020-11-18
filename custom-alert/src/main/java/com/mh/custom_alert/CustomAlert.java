@@ -56,42 +56,42 @@ public class CustomAlert extends AlertDialog {
             vH.setVisibility(View.VISIBLE);
             vv1.setVisibility(View.GONE);
             vv2.setVisibility(View.GONE);
-            setBackground(backPos, R.drawable.corner_leftright);
+            setBackground(backP, R.drawable.corner_leftright);
         } else if (!isX() && isN() && !isP()) {     // 0 1 0
             vH.setVisibility(View.VISIBLE);
             vv1.setVisibility(View.GONE);
             vv2.setVisibility(View.GONE);
-            setBackground(backNeg, R.drawable.corner_leftright);
+            setBackground(backN, R.drawable.corner_leftright);
         } else if (!isX() && isN() && isP()) {      // 0 1 1
             vH.setVisibility(View.VISIBLE);
             vv1.setVisibility(View.GONE);
             vv2.setVisibility(View.VISIBLE);
-            setBackground(backNeg, R.drawable.corner_left);
-            setBackground(backPos, R.drawable.corner_right);
+            setBackground(backN, R.drawable.corner_left);
+            setBackground(backP, R.drawable.corner_right);
         } else if (isX() && !isN() && !isP()) {     // 1 0 0
             vH.setVisibility(View.VISIBLE);
             vv1.setVisibility(View.GONE);
             vv2.setVisibility(View.GONE);
-            setBackground(backNeu, R.drawable.corner_leftright);
+            setBackground(backX, R.drawable.corner_leftright);
         } else if (isX() && !isN() && isP()) {      // 1 0 1
             vH.setVisibility(View.VISIBLE);
             vv1.setVisibility(View.VISIBLE);
             vv2.setVisibility(View.GONE);
-            setBackground(backNeu, R.drawable.corner_left);
-            setBackground(backPos, R.drawable.corner_right);
+            setBackground(backX, R.drawable.corner_left);
+            setBackground(backP, R.drawable.corner_right);
         } else if (isX() && isN() && !isP()) {      // 1 1 0
             vH.setVisibility(View.VISIBLE);
             vv1.setVisibility(View.VISIBLE);
             vv2.setVisibility(View.GONE);
-            setBackground(backNeu, R.drawable.corner_left);
-            setBackground(backNeg, R.drawable.corner_right);
+            setBackground(backX, R.drawable.corner_left);
+            setBackground(backN, R.drawable.corner_right);
         } else if (isX() && isN() && isP()) {       // 1 1 1
             vH.setVisibility(View.VISIBLE);
             vv1.setVisibility(View.VISIBLE);
             vv2.setVisibility(View.VISIBLE);
-            setBackground(backNeu, R.drawable.corner_left);
-            btnNegative.setBackground(makeSelector(backNeg));
-            setBackground(backPos, R.drawable.corner_right);
+            setBackground(backX, R.drawable.corner_left);
+            btnN.setBackground(makeSelector(backN));
+            setBackground(backP, R.drawable.corner_right);
         }
     }
 
@@ -103,10 +103,8 @@ public class CustomAlert extends AlertDialog {
         StateListDrawable res = new StateListDrawable();
         res.setExitFadeDuration(400);
         res.setAlpha(btn.alpha);
-        //res.addState(new int[]{android.R.attr.state_pressed}, drawable(c));
         res.addState(new int[]{android.R.attr.state_pressed}, setColor(btn.pressColor, d));
         res.addState(new int[]{}, setColor(btn.backColor, d));
-        //res.addState(new int[]{}, new ColorDrawable(Color.TRANSPARENT));
         return res;
     }
 
@@ -116,19 +114,18 @@ public class CustomAlert extends AlertDialog {
         res.setAlpha(btn.alpha);
         res.addState(new int[]{android.R.attr.state_pressed}, new ColorDrawable(ContextCompat.getColor(act, btn.pressColor)));
         res.addState(new int[]{}, new ColorDrawable(ContextCompat.getColor(act, btn.backColor)));
-        //res.addState(new int[]{}, new ColorDrawable(Color.TRANSPARENT));
         return res;
     }
 
     private boolean isX() {
-        return btnNeutral.getVisibility() == View.VISIBLE;
+        return btnX.getVisibility() == View.VISIBLE;
     }
 
     private boolean isN() {
-        return btnNegative.getVisibility() == View.VISIBLE;
+        return btnN.getVisibility() == View.VISIBLE;
     }
 
     private boolean isP() {
-        return btnPositive.getVisibility() == View.VISIBLE;
+        return btnP.getVisibility() == View.VISIBLE;
     }
 }

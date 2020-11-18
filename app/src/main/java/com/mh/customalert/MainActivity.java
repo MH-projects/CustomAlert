@@ -1,11 +1,13 @@
 package com.mh.customalert;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -25,12 +27,20 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        try {
+            Typeface font = Typeface.createFromAsset(getAssets(), "fonts/Amboqia_Boriango.otf");
+            ((TextView) findViewById(R.id.tvCustomAlert)).setTypeface(font);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         cbFullAlert = findViewById(R.id.cbSetFull);
         etTitle = findViewById(R.id.etTitle);
         etMessage = findViewById(R.id.etMessage);
 
-        final CustomAlert customAlert = new CustomAlert(this);
+        /*final CustomAlert customAlert = new CustomAlert(this);
         customAlert.setType(Type.PROGRESS);
+        customAlert.setFullAlert(true);
         customAlert.setTitle("Wait!");
         customAlert.setMessage("Your information is uploading...");
         customAlert.setNegativeText("Cancel", new View.OnClickListener() {
@@ -39,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-        customAlert.show();
+        customAlert.show();*/
     }
 
     public void click_type(View v) {

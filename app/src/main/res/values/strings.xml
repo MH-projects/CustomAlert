@@ -1,5 +1,6 @@
 <resources>
-    <string name="app_name">CustomAlert</string>
+    <string name="app_name">Custom Alert</string>
+    <string name="by_mh"><b><i>By Mh-Projects</i></b></string>
 
     <string name="enable_custom_alert_full">Enable Custom Alert Full</string>
     <string name="alert_simple">Simple</string>
