@@ -11,8 +11,10 @@ import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.ShapeDrawable;
+import android.graphics.drawable.StateListDrawable;
 import android.text.Html;
 import android.util.DisplayMetrics;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,40 +36,36 @@ import pl.droidsonroids.gif.GifImageView;
 //TODO SetEnter animation and exit animation
 //TODO SetFonts
 
-public abstract class AlertDialog implements View.OnClickListener, DialogInterface.OnDismissListener {
+public class AlertDialog implements View.OnClickListener, DialogInterface.OnDismissListener {
 
-    protected Activity act;
+    private Activity act;
 
-    protected View view;
+    private View view;
     private Dialog dialog;
 
-    protected ImageView ivCircle;
+    private ImageView ivCircle;
     private ProgressBar prgCircle;
     private TextView tvT, tvM;
     private ScrollView scrollView;
     private LinearLayout llView;
 
-    protected TextView btnX;
-    protected TextView btnN;
-    protected TextView btnP;
-    protected View vH, vv1, vv2;
+    private TextView btnX;
+    private TextView btnN;
+    private TextView btnP;
+    private View vH, vv1, vv2;
 
-    protected boolean setMarginTop;
-    protected boolean fullAlert = false;
+    private boolean setMarginTop;
+    private boolean fullAlert = false;
 
-    protected Btn backX;
-    protected Btn backN;
-    protected Btn backP;
+    private Btn backX;
+    private Btn backN;
+    private Btn backP;
 
-    protected static class Btn {
+    private static class Btn {
         protected int backColor;
         protected int pressColor;
         protected int alpha;
     }
-
-    protected abstract void checkFullAlert();
-
-    protected abstract void checkButtons();
 
     @SuppressLint("InflateParams")
     public AlertDialog(Activity act) {
@@ -77,6 +75,12 @@ public abstract class AlertDialog implements View.OnClickListener, DialogInterfa
 
         LayoutInflater inflater = (LayoutInflater) act.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         view = Objects.requireNonNull(inflater).inflate(R.layout.customalert_lib, null);
+
+        initBindings();
+        initListeners();
+    }
+
+    private void initBindings() {
 
         ivCircle = view.findViewById(R.id.circleView);
         prgCircle = view.findViewById(R.id.prgCircle);
@@ -93,9 +97,6 @@ public abstract class AlertDialog implements View.OnClickListener, DialogInterfa
         vv1 = view.findViewById(R.id.viewV1);
         vv2 = view.findViewById(R.id.viewV2);
 
-        view.findViewById(R.id.ivClose).setOnClickListener(this);
-        dialog.setOnDismissListener(this);
-
         backX = new Btn();
         backN = new Btn();
         backP = new Btn();
@@ -105,73 +106,78 @@ public abstract class AlertDialog implements View.OnClickListener, DialogInterfa
         setBtn(backP);
     }
 
+    private void initListeners() {
+        view.findViewById(R.id.ivClose).setOnClickListener(this);
+        dialog.setOnDismissListener(this);
+    }
+
     private void setBtn(Btn b) {
         b.backColor = android.R.color.transparent;
         b.pressColor = R.color.colorClickButton;
         b.alpha = 65;
     }
 
-    public void setCancelable(boolean cancelable) {
-        dialog.setCancelable(cancelable);
+    protected void setCancelable(boolean c) {
+        dialog.setCancelable(c);
     }
 
-    public void setColor(int color) {
+    protected void setColor(int c) {
         Drawable drawable = ivCircle.getBackground();
         if (drawable instanceof ShapeDrawable) {
-            ((ShapeDrawable) drawable).getPaint().setColor(ContextCompat.getColor(act, color));
+            ((ShapeDrawable) drawable).getPaint().setColor(ContextCompat.getColor(act, c));
         } else if (drawable instanceof GradientDrawable) {
-            ((GradientDrawable) drawable).setColor(ContextCompat.getColor(act, color));
+            ((GradientDrawable) drawable).setColor(ContextCompat.getColor(act, c));
         } else if (drawable instanceof ColorDrawable) {
-            ((ColorDrawable) drawable).setColor(ContextCompat.getColor(act, color));
+            ((ColorDrawable) drawable).setColor(ContextCompat.getColor(act, c));
         }
     }
 
-    public void setColorTitle(int color) {
-        tvT.setTextColor(ContextCompat.getColor(act, color));
+    protected void setColorTitle(int c) {
+        tvT.setTextColor(ContextCompat.getColor(act, c));
     }
 
-    public void setColorMessage(int color) {
-        tvM.setTextColor(ContextCompat.getColor(act, color));
+    protected void setColorMessage(int c) {
+        tvM.setTextColor(ContextCompat.getColor(act, c));
     }
 
-    public void setColorPrg(int color) {
-        prgCircle.setIndeterminateTintList(ColorStateList.valueOf(ContextCompat.getColor(act, color)));
+    protected void setColorPrg(int c) {
+        prgCircle.setIndeterminateTintList(ColorStateList.valueOf(ContextCompat.getColor(act, c)));
     }
 
-    public void setType(int[] type) {
-        setColor(type[0]);
-        setIcon(type[1]);
+    protected void setType(int[] t) {
+        setColor(t[0]);
+        setIcon(t[1]);
         prgCircle.setVisibility(View.GONE);
         ivCircle.setVisibility(View.VISIBLE);
         setMarginTop = true;
     }
 
-    public void setType(int type) {
-        if (type == Type.PROGRESS) {
+    protected void setType(int t) {
+        if (t == Type.PROGRESS) {
             setMarginTop = true;
             setIcon(0);
             prgCircle.setVisibility(View.VISIBLE);
         }
     }
 
-    public void setIcon(Integer icon) {
-        if (icon == null) {
+    protected void setIcon(Integer i) {
+        if (i == null) {
             ivCircle.setVisibility(View.GONE);
         } else {
-            ivCircle.setImageResource(icon);
+            ivCircle.setImageResource(i);
         }
-        setMarginTop = icon != null;
+        setMarginTop = i != null;
     }
 
-    public void setTitle(String title) {
-        setTxt(tvT, title);
+    protected void setTitle(String t) {
+        setTxt(tvT, t);
     }
 
-    public void setMessage(String message) {
-        setTxt(tvM, message);
+    protected void setMessage(String m) {
+        setTxt(tvM, m);
     }
 
-    private void setTxt(TextView t, String s) {
+    protected void setTxt(TextView t, String s) {
         t.setText(Html.fromHtml(s));
         if (s.isEmpty()) {
             t.setVisibility(View.GONE);
@@ -180,12 +186,12 @@ public abstract class AlertDialog implements View.OnClickListener, DialogInterfa
         }
     }
 
-    public void setView(View view) {
-        if (view == null) {
+    protected void setView(View v) {
+        if (v == null) {
             llView.removeAllViews();
             llView.setVisibility(View.GONE);
         } else {
-            llView.addView(view);
+            llView.addView(v);
             llView.setVisibility(View.VISIBLE);
         }
 
@@ -196,13 +202,13 @@ public abstract class AlertDialog implements View.OnClickListener, DialogInterfa
         setHeight();
     }
 
-    public void setGif(Integer gif) {
-        if (gif == null) {
+    protected void setGif(Integer g) {
+        if (g == null) {
             llView.removeAllViews();
             llView.setVisibility(View.GONE);
         } else {
             View v = act.getLayoutInflater().inflate(R.layout.customalert_gif, null);
-            ((GifImageView) v.findViewById(R.id.ivGif)).setImageResource(gif);
+            ((GifImageView) v.findViewById(R.id.ivGif)).setImageResource(g);
 
             LinearLayout.LayoutParams p2 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 350);
             v.setLayoutParams(p2);
@@ -212,74 +218,70 @@ public abstract class AlertDialog implements View.OnClickListener, DialogInterfa
         }
     }
 
-    public void setNeutralText(String text) {
-        setBtn(btnX, text, this);
+    protected void setNeutralText(String t) {
+        setBtn(btnX, t, this);
     }
 
-    public void setNegativeText(String text) {
-        setBtn(btnN, text, this);
+    protected void setNegativeText(String t) {
+        setBtn(btnN, t, this);
     }
 
-    public void setPositiveText(String text) {
-        setBtn(btnP, text, this);
+    protected void setPositiveText(String t) {
+        setBtn(btnP, t, this);
     }
 
-    public void setNeutralText(String text, View.OnClickListener listener) {
-        setBtn(btnX, text, listener);
+    protected void setNeutralText(String t, View.OnClickListener l) {
+        setBtn(btnX, t, l);
     }
 
-    public void setNegativeText(String text, View.OnClickListener listener) {
-        setBtn(btnN, text, listener);
+    protected void setNegativeText(String t, View.OnClickListener l) {
+        setBtn(btnN, t, l);
     }
 
-    public void setPositiveText(String text, View.OnClickListener listener) {
-        setBtn(btnP, text, listener);
+    protected void setPositiveText(String t, View.OnClickListener l) {
+        setBtn(btnP, t, l);
     }
 
-    public void setNeutralTextColor(int color) {
-        btnX.setTextColor(ContextCompat.getColor(act, color));
+    protected void setNeutralTextColor(int c) {
+        btnX.setTextColor(ContextCompat.getColor(act, c));
     }
 
-    public void setNegativeTextColor(int color) {
-        btnN.setTextColor(ContextCompat.getColor(act, color));
+    protected void setNegativeTextColor(int c) {
+        btnN.setTextColor(ContextCompat.getColor(act, c));
     }
 
-    public void setPositiveTextColor(int color) {
-        btnP.setTextColor(ContextCompat.getColor(act, color));
+    protected void setPositiveTextColor(int c) {
+        btnP.setTextColor(ContextCompat.getColor(act, c));
     }
 
-    public void setNeutralBackColor(int color) {
-        backX.backColor = color;
+    protected void setNeutralBackColor(int c) {
+        backX.backColor = c;
     }
 
-    public void setNegativeBackColor(int color) {
-        backN.backColor = color;
+    protected void setNegativeBackColor(int c) {
+        backN.backColor = c;
     }
 
-    public void setPositiveBackColor(int color) {
-        backP.backColor = color;
+    protected void setPositiveBackColor(int c) {
+        backP.backColor = c;
     }
 
-    public void setNeutralColorPress(int color, int alpha) {
-        //backX.btn = btnX;
-        backX.pressColor = color;
-        backX.alpha = alpha;
+    protected void setNeutralColorPress(int c, int a) {
+        backX.pressColor = c;
+        backX.alpha = a;
     }
 
-    public void setNegativeColorPress(int color, int alpha) {
-        //backN.btn = btnN;
-        backN.pressColor = color;
-        backN.alpha = alpha;
+    protected void setNegativeColorPress(int c, int a) {
+        backN.pressColor = c;
+        backN.alpha = a;
     }
 
-    public void setPositiveColorPress(int color, int alpha) {
-        //backP.btn = btnP;
-        backP.pressColor = color;
-        backP.alpha = alpha;
+    protected void setPositiveColorPress(int c, int a) {
+        backP.pressColor = c;
+        backP.alpha = a;
     }
 
     private void setHeight() {
-
         final ViewGroup.LayoutParams p2 = scrollView.getLayoutParams();
         ViewTreeObserver vto = scrollView.getViewTreeObserver();
         vto.addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
@@ -300,7 +302,7 @@ public abstract class AlertDialog implements View.OnClickListener, DialogInterfa
         });
     }
 
-    private void setBtn(TextView txt, String text, View.OnClickListener l) {
+    protected void setBtn(TextView txt, String text, View.OnClickListener l) {
         if (text == null) {
             txt.setText("");
             txt.setVisibility(View.GONE);
@@ -312,19 +314,19 @@ public abstract class AlertDialog implements View.OnClickListener, DialogInterfa
         checkButtons();
     }
 
-    public void setFullAlert(boolean fullAlert) {
-        this.fullAlert = fullAlert;
+    protected void setFullAlert(boolean fa) {
+        fullAlert = fa;
     }
 
-    public void hideClose(boolean hide) {
-        if (hide) {
+    protected void hideClose(boolean h) {
+        if (h) {
             view.findViewById(R.id.ivClose).setVisibility(View.GONE);
         } else {
             view.findViewById(R.id.ivClose).setVisibility(View.VISIBLE);
         }
     }
 
-    public void show() {
+    protected void show() {
 
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(view);
@@ -337,7 +339,7 @@ public abstract class AlertDialog implements View.OnClickListener, DialogInterfa
         dialog.show();
     }
 
-    public void dismiss() {
+    protected void dismiss() {
         dialog.dismiss();
     }
 
@@ -357,5 +359,103 @@ public abstract class AlertDialog implements View.OnClickListener, DialogInterfa
         btnN.setBackground(null);
         btnP.setBackground(null);
         llView.removeAllViews();
+    }
+
+    // =============================================================================================
+    private void checkFullAlert() {
+        if (fullAlert) {
+            RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            params.setMargins(0, 0, 0, 0);
+            view.findViewById(R.id.relAlert).setLayoutParams(params);
+            if (setMarginTop) {
+                int marginInDp = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 80, act.getResources().getDisplayMetrics());
+                RelativeLayout.LayoutParams params2 = new RelativeLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0);
+                params2.setMargins(0, marginInDp, 0, 0);
+                view.findViewById(R.id.view).setLayoutParams(params2);
+            }
+        }
+    }
+
+    private void checkButtons() {
+        if (!isX() && !isN() && !isP()) {           // 0 0 0
+            vH.setVisibility(View.GONE);
+            vv1.setVisibility(View.GONE);
+            vv2.setVisibility(View.GONE);
+        } else if (!isX() && !isN() && isP()) {     // 0 0 1
+            vH.setVisibility(View.VISIBLE);
+            vv1.setVisibility(View.GONE);
+            vv2.setVisibility(View.GONE);
+            btnP.setBackground(makeSelector(backP, 1, 1));
+        } else if (!isX() && isN() && !isP()) {     // 0 1 0
+            vH.setVisibility(View.VISIBLE);
+            vv1.setVisibility(View.GONE);
+            vv2.setVisibility(View.GONE);
+            btnN.setBackground(makeSelector(backN, 1, 1));
+        } else if (!isX() && isN() && isP()) {      // 0 1 1
+            vH.setVisibility(View.VISIBLE);
+            vv1.setVisibility(View.GONE);
+            vv2.setVisibility(View.VISIBLE);
+            btnN.setBackground(makeSelector(backN, 1, 0));
+            btnP.setBackground(makeSelector(backP, 0, 1));
+        } else if (isX() && !isN() && !isP()) {     // 1 0 0
+            vH.setVisibility(View.VISIBLE);
+            vv1.setVisibility(View.GONE);
+            vv2.setVisibility(View.GONE);
+            btnX.setBackground(makeSelector(backX, 1, 1));
+        } else if (isX() && !isN() && isP()) {      // 1 0 1
+            vH.setVisibility(View.VISIBLE);
+            vv1.setVisibility(View.VISIBLE);
+            vv2.setVisibility(View.GONE);
+            btnX.setBackground(makeSelector(backX, 1, 0));
+            btnP.setBackground(makeSelector(backP, 0, 1));
+        } else if (isX() && isN() && !isP()) {      // 1 1 0
+            vH.setVisibility(View.VISIBLE);
+            vv1.setVisibility(View.VISIBLE);
+            vv2.setVisibility(View.GONE);
+            btnX.setBackground(makeSelector(backX, 1, 0));
+            btnN.setBackground(makeSelector(backN, 0, 1));
+        } else if (isX() && isN() && isP()) {       // 1 1 1
+            vH.setVisibility(View.VISIBLE);
+            vv1.setVisibility(View.VISIBLE);
+            vv2.setVisibility(View.VISIBLE);
+            btnX.setBackground(makeSelector(backX, 1, 0));
+            btnN.setBackground(makeSelector(backN, 0, 0));
+            btnP.setBackground(makeSelector(backP, 0, 1));
+        }
+    }
+
+    private StateListDrawable makeSelector(Btn btn, int l, int r) {
+        StateListDrawable res = new StateListDrawable();
+        res.setExitFadeDuration(800);
+        res.setAlpha(btn.alpha);
+
+        res.addState(new int[]{android.R.attr.state_pressed}, createShape(true, btn.pressColor, l, r));
+        res.addState(new int[]{}, createShape(false, btn.backColor, l, r));
+
+        return res;
+    }
+
+    private GradientDrawable createShape(boolean stroke, int c, int l, int r) {
+
+        GradientDrawable shape = new GradientDrawable();
+        shape.setShape(GradientDrawable.RECTANGLE);
+        shape.setCornerRadii(new float[]{0, 0, 0, 0, 20 * r, 20 * r, 20 * l, 20 * l});
+        shape.setColor(ContextCompat.getColor(act, c));
+        if (stroke)
+            shape.setStroke(6, (ContextCompat.getColor(act, android.R.color.white)));
+
+        return shape;
+    }
+
+    private boolean isX() {
+        return btnX.getVisibility() == View.VISIBLE;
+    }
+
+    private boolean isN() {
+        return btnN.getVisibility() == View.VISIBLE;
+    }
+
+    private boolean isP() {
+        return btnP.getVisibility() == View.VISIBLE;
     }
 }

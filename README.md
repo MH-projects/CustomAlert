@@ -5,6 +5,41 @@
 Custom alert for a better design of your application.
 
 ## Usage
+### Gradle
+Project
+```groovy
+allprojects {
+        repositories {
+	        ...
+		maven { url 'https://jitpack.io' }
+	}
+}
+```
+App
+```groovy
+dependencies {
+        implementation 'com.github.MH-projects:CustomAlert:release'
+}
+```
+### Maven
+```groovy
+<repositories>
+        <repository>
+                <id>jitpack.io</id>
+		<url>https://jitpack.io</url>
+	</repository>
+</repositories>
+```
+
+```groovy
+<dependency>
+        <groupId>com.github.MH-projects</groupId>
+	<artifactId>CustomAlert</artifactId>
+	<version>release</version>
+</dependency>
+```
+
+
 ### Type
 
 ```java
@@ -73,6 +108,7 @@ alert.setGif(R.drawable.your_gif);
 | setColor | int R.color.your_color | Set the circle color. |
 | setColorTitle | int R.color.your_color | Set the title color. |
 | setColorMessage | int R.color.your_color | Set the message color. |
+| setColorPrg | int R.color.your_color | Set the progress color. |
 | setIcon | int R.drawable.your_drawable | Set the circle icon. If the icon is *null* the circle is gone. |
 | set **Neutral \| Negative \| Positive** Text | String text | Set the neutral,negative or positive button text. |
 | set **Neutral \| Negative \| Positive** Text | String text, View.OnClickListener listener| Set the neutral,negative or positive button text and set the listener of button. |

@@ -27,7 +27,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         try {
             Typeface font = Typeface.createFromAsset(getAssets(), "fonts/Amboqia_Boriango.otf");
             ((TextView) findViewById(R.id.tvCustomAlert)).setTypeface(font);

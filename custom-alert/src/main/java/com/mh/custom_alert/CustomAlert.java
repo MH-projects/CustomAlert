@@ -1,14 +1,7 @@
 package com.mh.custom_alert;
 
 import android.app.Activity;
-import android.graphics.drawable.GradientDrawable;
-import android.graphics.drawable.StateListDrawable;
-import android.util.TypedValue;
 import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
-
-import androidx.core.content.ContextCompat;
 
 public class CustomAlert extends AlertDialog {
 
@@ -16,102 +9,127 @@ public class CustomAlert extends AlertDialog {
         super(activity);
     }
 
-    protected void checkFullAlert() {
-        if (fullAlert) {
-            RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-            params.setMargins(0, 0, 0, 0);
-            view.findViewById(R.id.relAlert).setLayoutParams(params);
-            if (setMarginTop) {
-
-                int marginInDp = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 80, act.getResources().getDisplayMetrics());
-                RelativeLayout.LayoutParams params2 = new RelativeLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0);
-                params2.setMargins(0, marginInDp, 0, 0);
-                view.findViewById(R.id.view).setLayoutParams(params2);
-            }
-        }
+    public void setCancelable(boolean cancelable) {
+        super.setCancelable(cancelable);
     }
 
-    protected void checkButtons() {
-
-        if (!isX() && !isN() && !isP()) {           // 0 0 0
-            vH.setVisibility(View.GONE);
-            vv1.setVisibility(View.GONE);
-            vv2.setVisibility(View.GONE);
-        } else if (!isX() && !isN() && isP()) {     // 0 0 1
-            vH.setVisibility(View.VISIBLE);
-            vv1.setVisibility(View.GONE);
-            vv2.setVisibility(View.GONE);
-            btnP.setBackground(makeSelector(backP, 1, 1));
-        } else if (!isX() && isN() && !isP()) {     // 0 1 0
-            vH.setVisibility(View.VISIBLE);
-            vv1.setVisibility(View.GONE);
-            vv2.setVisibility(View.GONE);
-            btnN.setBackground(makeSelector(backN, 1, 1));
-        } else if (!isX() && isN() && isP()) {      // 0 1 1
-            vH.setVisibility(View.VISIBLE);
-            vv1.setVisibility(View.GONE);
-            vv2.setVisibility(View.VISIBLE);
-            btnN.setBackground(makeSelector(backN, 1, 0));
-            btnP.setBackground(makeSelector(backP, 0, 1));
-        } else if (isX() && !isN() && !isP()) {     // 1 0 0
-            vH.setVisibility(View.VISIBLE);
-            vv1.setVisibility(View.GONE);
-            vv2.setVisibility(View.GONE);
-            btnX.setBackground(makeSelector(backX, 1, 1));
-        } else if (isX() && !isN() && isP()) {      // 1 0 1
-            vH.setVisibility(View.VISIBLE);
-            vv1.setVisibility(View.VISIBLE);
-            vv2.setVisibility(View.GONE);
-            btnX.setBackground(makeSelector(backX, 1, 0));
-            btnP.setBackground(makeSelector(backP, 0, 1));
-        } else if (isX() && isN() && !isP()) {      // 1 1 0
-            vH.setVisibility(View.VISIBLE);
-            vv1.setVisibility(View.VISIBLE);
-            vv2.setVisibility(View.GONE);
-            btnX.setBackground(makeSelector(backX, 1, 0));
-            btnN.setBackground(makeSelector(backN, 0, 1));
-        } else if (isX() && isN() && isP()) {       // 1 1 1
-            vH.setVisibility(View.VISIBLE);
-            vv1.setVisibility(View.VISIBLE);
-            vv2.setVisibility(View.VISIBLE);
-            btnX.setBackground(makeSelector(backX, 1, 0));
-            btnN.setBackground(makeSelector(backN, 0, 0));
-            btnP.setBackground(makeSelector(backP, 0, 1));
-        }
+    public void setColor(int color) {
+        super.setColor(color);
     }
 
-    private StateListDrawable makeSelector(Btn btn, int l, int r) {
-        StateListDrawable res = new StateListDrawable();
-        res.setExitFadeDuration(800);
-        res.setAlpha(btn.alpha);
-
-        res.addState(new int[]{android.R.attr.state_pressed}, createShape(true, btn.pressColor, l, r));
-        res.addState(new int[]{}, createShape(false, btn.backColor, l, r));
-
-        return res;
+    public void setColorTitle(int color) {
+        super.setColorTitle(color);
     }
 
-    private GradientDrawable createShape(boolean stroke, int c, int l, int r) {
-
-        GradientDrawable shape = new GradientDrawable();
-        shape.setShape(GradientDrawable.RECTANGLE);
-        shape.setCornerRadii(new float[]{0, 0, 0, 0, 20 * r, 20 * r, 20 * l, 20 * l});
-        shape.setColor(ContextCompat.getColor(act, c));
-        if (stroke)
-            shape.setStroke(6, (ContextCompat.getColor(act, android.R.color.white)));
-
-        return shape;
+    public void setColorMessage(int color) {
+        super.setColorMessage(color);
     }
 
-    private boolean isX() {
-        return btnX.getVisibility() == View.VISIBLE;
+    public void setColorPrg(int color) {
+        super.setColorPrg(color);
     }
 
-    private boolean isN() {
-        return btnN.getVisibility() == View.VISIBLE;
+    public void setType(int[] type) {
+        super.setType(type);
     }
 
-    private boolean isP() {
-        return btnP.getVisibility() == View.VISIBLE;
+    public void setType(int type) {
+        super.setType(type);
+    }
+
+    public void setIcon(Integer icon) {
+        super.setIcon(icon);
+    }
+
+    public void setTitle(String title) {
+        super.setTitle(title);
+    }
+
+    public void setMessage(String message) {
+        super.setMessage(message);
+    }
+
+    public void setView(View view) {
+        super.setView(view);
+    }
+
+    public void setGif(Integer gif) {
+        super.setGif(gif);
+    }
+
+    public void setNeutralText(String text) {
+        super.setNeutralText(text);
+    }
+
+    public void setNegativeText(String text) {
+        super.setNegativeText(text);
+    }
+
+    public void setPositiveText(String text) {
+        super.setPositiveText(text);
+    }
+
+    public void setNeutralText(String text, View.OnClickListener listener) {
+        super.setNeutralText(text, listener);
+    }
+
+    public void setNegativeText(String text, View.OnClickListener listener) {
+        super.setNegativeText(text, listener);
+    }
+
+    public void setPositiveText(String text, View.OnClickListener listener) {
+        super.setPositiveText(text, listener);
+    }
+
+    public void setNeutralTextColor(int color) {
+        super.setNeutralTextColor(color);
+    }
+
+    public void setNegativeTextColor(int color) {
+        super.setNegativeTextColor(color);
+    }
+
+    public void setPositiveTextColor(int color) {
+        super.setPositiveTextColor(color);
+    }
+
+    public void setNeutralBackColor(int color) {
+        super.setNeutralBackColor(color);
+    }
+
+    public void setNegativeBackColor(int color) {
+        super.setNegativeBackColor(color);
+    }
+
+    public void setPositiveBackColor(int color) {
+        super.setPositiveBackColor(color);
+    }
+
+    public void setNeutralColorPress(int color, int alpha) {
+        super.setNeutralColorPress(color, alpha);
+    }
+
+    public void setNegativeColorPress(int color, int alpha) {
+        super.setNegativeColorPress(color, alpha);
+    }
+
+    public void setPositiveColorPress(int color, int alpha) {
+        super.setPositiveColorPress(color, alpha);
+    }
+
+    public void setFullAlert(boolean fullAlert) {
+        super.setFullAlert(fullAlert);
+    }
+
+    public void hideClose(boolean hide) {
+        super.hideClose(hide);
+    }
+
+    public void show() {
+        super.show();
+    }
+
+    public void dismiss() {
+        super.dismiss();
     }
 }
