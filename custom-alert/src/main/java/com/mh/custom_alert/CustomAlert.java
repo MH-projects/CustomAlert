@@ -5,8 +5,8 @@ import android.view.View;
 
 public class CustomAlert extends AlertDialog {
 
-    public CustomAlert(Activity activity) {
-        super(activity);
+    public CustomAlert(Activity activity, int theme) {
+        super(activity, theme);
     }
 
     public void setCancelable(boolean cancelable) {

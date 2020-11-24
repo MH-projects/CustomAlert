@@ -3,13 +3,13 @@
     <color name="colorPrimary">#009688</color>
     <color name="colorPrimaryDark">#2196F3</color>
     <color name="colorAccent">#FF5722</color>
-    <color name="colorBackGround">#FFFFFF</color>
-    <color name="colorBack">#8A8A8A</color>
+    <color name="colorBackGround">#252525</color>
+    <color name="colorBack">@android:color/black</color>
     <color name="ic_launcher_background">#c4c4c4</color>
 
     <color name="color_hint">#989898</color>
-    <color name="color_text">#000000</color>
-    <color name="color_text_view">#504F4F</color>
+    <color name="color_text">#FFFFFF</color>
+    <color name="color_text_view">#B6B6B6</color>
 
     <color name="color_neutral">#0027FF</color>
     <color name="color_negative">#FF0000</color>

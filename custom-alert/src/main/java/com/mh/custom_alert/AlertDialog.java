@@ -6,6 +6,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.res.ColorStateList;
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
@@ -68,10 +69,29 @@ public class AlertDialog implements View.OnClickListener, DialogInterface.OnDism
     }
 
     @SuppressLint("InflateParams")
-    public AlertDialog(Activity act) {
+    public AlertDialog(Activity act, int theme) {
 
         this.act = act;
         dialog = new Dialog(act);
+        switch (theme) {
+            case Theme.SYSTEM:
+                int nightModeFlags = act.getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
+
+                if (nightModeFlags == Configuration.UI_MODE_NIGHT_YES) {
+                    act.setTheme(R.style.CustomAlertDarkTheme);
+                } else {
+                    act.setTheme(R.style.CustomAlertTheme);
+                }
+                break;
+
+            case Theme.LIGHT:
+                act.setTheme(R.style.CustomAlertTheme);
+                break;
+
+            case Theme.DARK:
+                act.setTheme(R.style.CustomAlertDarkTheme);
+                break;
+        }
 
         LayoutInflater inflater = (LayoutInflater) act.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         view = Objects.requireNonNull(inflater).inflate(R.layout.customalert_lib, null);
@@ -202,6 +222,7 @@ public class AlertDialog implements View.OnClickListener, DialogInterface.OnDism
         setHeight();
     }
 
+    @SuppressLint("InflateParams")
     protected void setGif(Integer g) {
         if (g == null) {
             llView.removeAllViews();

@@ -1,5 +1,6 @@
 package com.mh.customalert;
 
+import android.annotation.SuppressLint;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
@@ -7,12 +8,15 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import com.mh.custom_alert.CustomAlert;
+import com.mh.custom_alert.Theme;
 import com.mh.custom_alert.Type;
 
 
@@ -24,10 +28,12 @@ public class MainActivity extends AppCompatActivity {
     private EditText etTitle;
     private EditText etMessage;
 
+    @SuppressLint("SwitchIntDef")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         try {
             Typeface font = Typeface.createFromAsset(getAssets(), "fonts/Amboqia_Boriango.otf");
             ((TextView) findViewById(R.id.tvCustomAlert)).setTypeface(font);
@@ -38,6 +44,39 @@ public class MainActivity extends AppCompatActivity {
         cbFullAlert = findViewById(R.id.cbSetFull);
         etTitle = findViewById(R.id.etTitle);
         etMessage = findViewById(R.id.etMessage);
+
+        switch (AppCompatDelegate.getDefaultNightMode()) {
+            case AppCompatDelegate.MODE_NIGHT_NO:
+                ((RadioButton) findViewById(R.id.rbLight)).setChecked(true);
+                break;
+
+            case AppCompatDelegate.MODE_NIGHT_YES:
+                ((RadioButton) findViewById(R.id.rbDark)).setChecked(true);
+                break;
+
+            default:
+                ((RadioButton) findViewById(R.id.rbSystem)).setChecked(true);
+                break;
+        }
+
+        ((RadioGroup) findViewById(R.id.rgTheme)).setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+
+                switch (checkedId) {
+                    case R.id.rbSystem:
+                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
+                        break;
+
+                    case R.id.rbLight:
+                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                        break;
+
+                    case R.id.rbDark:
+                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                        break;
+                }
+            }
+        });
     }
 
     public void click_type(View v) {
@@ -56,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
             case R.id.btnPrg:
-                setCustomAlertTypePrg(Type.PROGRESS);
+                setCustomAlertTypePrg();
                 break;
 
             case R.id.btnCustom:
@@ -65,6 +104,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    @SuppressLint("InflateParams")
     public void click_view(View v) {
 
         switch (v.getId()) {
@@ -83,7 +123,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setCustomAlertType(int[] type) {
-        alert = new CustomAlert(this);
+        alert = new CustomAlert(this, getAppTheme());
         alert.setType(type);
         setTitles();
         showAlert();
@@ -91,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void setCustomAlertType() {
 
-        alert = new CustomAlert(this);
+        alert = new CustomAlert(this, getAppTheme());
 
         alert.setColor(R.color.custom_color);
         alert.setIcon(R.drawable.ic_android);
@@ -115,9 +155,9 @@ public class MainActivity extends AppCompatActivity {
         showAlert();
     }
 
-    private void setCustomAlertTypePrg(int type) {
-        alert = new CustomAlert(this);
-        alert.setType(type);
+    private void setCustomAlertTypePrg() {
+        alert = new CustomAlert(this, getAppTheme());
+        alert.setType(Type.PROGRESS);
         alert.setColor(R.color.custom_color);
         alert.setColorPrg(R.color.colorPrimaryDark);
         setTitles();
@@ -125,7 +165,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setCustomAlertType(View v) {
-        alert = new CustomAlert(this);
+        alert = new CustomAlert(this, getAppTheme());
         if (((CheckBox) findViewById(R.id.cbSetIcon)).isChecked()) {
             alert.setIcon(R.drawable.ic_person);
         } else {
@@ -136,7 +176,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setCustomAlertGif() {
-        alert = new CustomAlert(this);
+        alert = new CustomAlert(this, getAppTheme());
         if (((CheckBox) findViewById(R.id.cbSetIcon)).isChecked()) {
             alert.setIcon(R.drawable.ic_android);
         } else {
@@ -162,58 +202,69 @@ public class MainActivity extends AppCompatActivity {
             alert.setNegativeText(null);
             alert.setPositiveText(null);
         } else if (((RadioButton) findViewById(R.id.rbOneButton)).isChecked()) {
-            alert.setPositiveText("Accept", new View.OnClickListener() {
+            alert.setPositiveText(getString(R.string.positive_button), new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     alert.dismiss();
-                    Toast.makeText(MainActivity.this, "Positive Click", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, getString(R.string.positive_button_click), Toast.LENGTH_SHORT).show();
                 }
             });
         } else if (((RadioButton) findViewById(R.id.rbTwoButtons)).isChecked()) {
-            alert.setNegativeText("Negative", new View.OnClickListener() {
+            alert.setNegativeText(getString(R.string.negative_button), new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     alert.dismiss();
-                    Toast.makeText(MainActivity.this, "Negative Click", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, getString(R.string.negative_button_click), Toast.LENGTH_SHORT).show();
                 }
             });
-            alert.setPositiveText("Positive", new View.OnClickListener() {
+            alert.setPositiveText(getString(R.string.positive_button), new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     alert.dismiss();
-                    Toast.makeText(MainActivity.this, "Positive Click", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, getString(R.string.positive_button_click), Toast.LENGTH_SHORT).show();
                 }
             });
         } else if (((RadioButton) findViewById(R.id.rbThreeButtons)).isChecked()) {
 
-            alert.setNeutralText("Neutral", new View.OnClickListener() {
+            alert.setNeutralText(getString(R.string.neutral_button), new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     alert.dismiss();
-                    Toast.makeText(MainActivity.this, "Neutral Click", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, getString(R.string.neutral_button_click), Toast.LENGTH_SHORT).show();
                 }
             });
-            alert.setNegativeText("Negative", new View.OnClickListener() {
+            alert.setNegativeText(getString(R.string.negative_button), new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     alert.dismiss();
-                    Toast.makeText(MainActivity.this, "Negative Click", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, getString(R.string.negative_button_click), Toast.LENGTH_SHORT).show();
                 }
             });
-            alert.setPositiveText("Positive", new View.OnClickListener() {
+            alert.setPositiveText(getString(R.string.positive_button), new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     alert.dismiss();
-                    Toast.makeText(MainActivity.this, "Positive Click", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, getString(R.string.positive_button_click), Toast.LENGTH_SHORT).show();
                 }
             });
         }
         alert.show();
     }
 
+    private int getAppTheme() {
+        if (((RadioButton) findViewById(R.id.rbLight)).isChecked()) {
+            return Theme.LIGHT;
+        } else if (((RadioButton) findViewById(R.id.rbDark)).isChecked()) {
+            return Theme.DARK;
+        } else {
+            return Theme.SYSTEM;
+        }
+    }
+
+    @SuppressLint("InflateParams")
     public void click_happy(View view) {
 
-        final CustomAlert alert = new CustomAlert(this);
+        final CustomAlert alert = new CustomAlert(this, getAppTheme());
         alert.setCancelable(false);
         alert.setIcon(R.drawable.ic_person);
 
@@ -226,7 +277,7 @@ public class MainActivity extends AppCompatActivity {
                 alert.setView(getLayoutInflater().inflate(R.layout.custom_view_identity, null));
                 alert.setIcon(null);
 
-                alert.setNegativeText("Cancelar", new View.OnClickListener() {
+                alert.setNegativeText(getString(R.string.negative_button), new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         alert.dismiss();
@@ -250,7 +301,7 @@ public class MainActivity extends AppCompatActivity {
                                 alert.setType(Type.PROGRESS);
                                 alert.setTitle("Enviando información");
                                 alert.setMessage("Espere un momento por favor");
-                                alert.setNegativeText("Cancelar");
+                                alert.setNegativeText(getString(R.string.negative_button));
 
                                 new Handler().postDelayed(new Runnable() {
                                     @Override
@@ -258,7 +309,7 @@ public class MainActivity extends AppCompatActivity {
                                         alert.setType(Type.SUCCESS);
                                         alert.setTitle("Información enviada");
                                         alert.setMessage("Tu información se ha enviado con exito");
-                                        alert.setPositiveText("Aceptar", new View.OnClickListener() {
+                                        alert.setPositiveText(getString(R.string.positive_button_click), new View.OnClickListener() {
                                             @Override
                                             public void onClick(View v) {
                                                 alert.dismiss();

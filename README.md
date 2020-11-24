@@ -4,10 +4,9 @@
 
 Custom alert for a better design of your application.
 
-## Usage
 ### Gradle
 Project
-```groovy
+```gladle
 allprojects {
         repositories {
 	        ...
@@ -16,13 +15,13 @@ allprojects {
 }
 ```
 App
-```groovy
+```gladle
 dependencies {
         implementation 'com.github.MH-projects:CustomAlert:release'
 }
 ```
 ### Maven
-```groovy
+```maven
 <repositories>
         <repository>
                 <id>jitpack.io</id>
@@ -31,7 +30,7 @@ dependencies {
 </repositories>
 ```
 
-```groovy
+```maven
 <dependency>
         <groupId>com.github.MH-projects</groupId>
 	<artifactId>CustomAlert</artifactId>
@@ -40,10 +39,11 @@ dependencies {
 ```
 
 
-### Type
+
+## Usage
 
 ```java
-final CustomAlert customAlert = new CustomAlert(this);
+final CustomAlert customAlert = new CustomAlert(this, Theme.SYSTEM);
         customAlert.setType(Type.SUCCESS);
         customAlert.setTitle("Success!");
         customAlert.setMessage("Your profile is update");
@@ -55,6 +55,19 @@ final CustomAlert customAlert = new CustomAlert(this);
         });
         customAlert.show();
 ```
+### Theme
+  - Theme.SYSTEM
+  - Theme.LIGHT
+  - Theme.DARK
+  
+<p>
+<img src="https://github.com/MH-projects/CustomAlert/blob/master/pictures/type_success_dark.png" width="200" height="355">
+<img src="https://github.com/MH-projects/CustomAlert/blob/master/pictures/type_fail_dark.png" width="200" height="355">
+<img src="https://github.com/MH-projects/CustomAlert/blob/master/pictures/type_warning_dark.png" width="200" height="355">
+<img src="https://github.com/MH-projects/CustomAlert/blob/master/pictures/type_prg_dark.gif" width="200" height="355">
+</p>
+  
+### Type
   - Type.SUCCESS
   - Type.FAIL
   - Type.WARNING

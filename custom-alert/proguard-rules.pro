@@ -22,3 +22,4 @@
 
 -keep class com.mh.custom_alert.CustomAlert { *; }
 -keep class com.mh.custom_alert.Type { *; }
+-keep class com.mh.custom_alert.Theme { *; }

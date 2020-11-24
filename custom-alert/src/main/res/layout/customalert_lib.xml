@@ -37,7 +37,7 @@
             android:layout_marginBottom="@dimen/_12dp"
             android:gravity="center"
             android:text="@string/ca_title"
-            android:textColor="@color/colorTitleCustomAlert"
+            android:textColor="?colorTitleCustomAlert"
             android:textSize="@dimen/_18sp"
             android:visibility="gone"
             tools:ignore="RelativeOverlap" />
@@ -52,7 +52,7 @@
             android:layout_marginEnd="@dimen/_10dp"
             android:layout_marginBottom="@dimen/_12dp"
             android:textAlignment="center"
-            android:textColor="@color/colorMessageCustomAlert"
+            android:textColor="?colorMessageCustomAlert"
             android:textSize="@dimen/_16sp"
             android:visibility="gone" />
 
@@ -77,7 +77,7 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_below="@+id/scrollView"
-            android:background="@color/colorPrimaryDarkCustomAlert"
+            android:background="?colorPrimaryDarkCustomAlert"
             android:visibility="gone" />
 
         <LinearLayout
@@ -101,7 +101,7 @@
                 android:id="@+id/viewV1"
                 android:layout_width="1dp"
                 android:layout_height="match_parent"
-                android:background="@color/colorPrimaryDarkCustomAlert"
+                android:background="?colorPrimaryDarkCustomAlert"
                 android:visibility="gone" />
 
             <TextView
@@ -118,7 +118,7 @@
                 android:id="@+id/viewV2"
                 android:layout_width="1dp"
                 android:layout_height="match_parent"
-                android:background="@color/colorPrimaryDarkCustomAlert"
+                android:background="?colorPrimaryDarkCustomAlert"
                 android:visibility="gone" />
 
             <TextView

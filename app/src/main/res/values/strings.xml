@@ -3,20 +3,29 @@
     <string name="by_mh"><b><i>By Mh-Projects</i></b></string>
 
     <string name="enable_custom_alert_full">Enable Custom Alert Full</string>
+    <string name="button">Buttons</string>
     <string name="alert_simple">Simple</string>
     <string name="alert_one_button">1 Btn</string>
     <string name="alert_two_buttons">2 Btn</string>
     <string name="alert_three_buttons">3 Btn</string>
+
+    <string name="theme">Theme</string>
+    <string name="theme_system">System</string>
+    <string name="theme_light">Light</string>
+    <string name="theme_dark">Dark</string>
 
     <string name="hint_title">Title</string>
     <string name="hint_message">Message</string>
     <string name="title">Hello! Custom Alert</string>
     <string name="message">This is an important message for you from Custom Alert.</string>
 
+    <string name="neutral_button">Neutral</string>
     <string name="negative_button">Cancel</string>
     <string name="positive_button">Accept</string>
+    <string name="neutral_button_click">Click Neutral Button</string>
     <string name="negative_button_click">Click Negative Button</string>
     <string name="positive_button_click">Click Positive Button</string>
+
 
     <string name="custom_type">Type</string>
     <string name="type_success">Success</string>

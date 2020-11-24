@@ -21,41 +21,47 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="14dp"
         android:layout_marginTop="4dp"
-        android:text="@string/view_name" />
+        android:text="@string/view_name"
+        android:textColor="@color/color_text_view" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="14dp"
         android:layout_marginTop="4dp"
-        android:text="@string/view_last_name" />
+        android:text="@string/view_last_name"
+        android:textColor="@color/color_text_view" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="14dp"
         android:layout_marginTop="4dp"
-        android:text="@string/view_birthday" />
+        android:text="@string/view_birthday"
+        android:textColor="@color/color_text_view" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="14dp"
         android:layout_marginTop="4dp"
-        android:text="@string/view_country" />
+        android:text="@string/view_country"
+        android:textColor="@color/color_text_view" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="14dp"
         android:layout_marginTop="4dp"
-        android:text="@string/view_city" />
+        android:text="@string/view_city"
+        android:textColor="@color/color_text_view" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="14dp"
         android:layout_marginTop="4dp"
-        android:text="@string/view_girlfriend" />
+        android:text="@string/view_girlfriend"
+        android:textColor="@color/color_text_view" />
 
 </LinearLayout>

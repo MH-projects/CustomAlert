@@ -8,5 +8,5 @@
 
     <stroke
         android:width="@dimen/_3dp"
-        android:color="@android:color/white" />
+        android:color="?colorCustomAlert" />
 </shape>

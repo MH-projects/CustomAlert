@@ -1,5 +1,21 @@
 <resources>
 
+    <style name="CustomAlertTheme">
+        <item name="colorPrimaryDarkCustomAlert">#0F3ECF</item>
+        <item name="colorCustomAlert">@android:color/white</item>
+        <item name="colorCloseCustomAlert">#2196F3</item>
+        <item name="colorTitleCustomAlert">#292929</item>
+        <item name="colorMessageCustomAlert">#615e5e</item>
+    </style>
+
+    <style name="CustomAlertDarkTheme">
+        <item name="colorPrimaryDarkCustomAlert">#999BA3</item>
+        <item name="colorCustomAlert">#252525</item>
+        <item name="colorCloseCustomAlert">#999BA3</item>
+        <item name="colorTitleCustomAlert">@android:color/white</item>
+        <item name="colorMessageCustomAlert">#E6E6E6</item>
+    </style>
+
     <style name="CustomAlertDialogTheme">
         <item name="android:windowEnterAnimation">@anim/modal_in</item>
         <item name="android:windowExitAnimation">@anim/modal_out</item>
