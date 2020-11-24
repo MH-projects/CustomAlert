@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.mh.custom_alert.CustomAlert;
 import com.mh.custom_alert.Type;
 
+
 public class MainActivity extends AppCompatActivity {
 
     private CustomAlert alert;
